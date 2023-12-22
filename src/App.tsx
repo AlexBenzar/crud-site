@@ -1,7 +1,8 @@
+import { SignUp } from "pages/SignUp/SignUp";
 import "scss/style.scss";
 
 function App() {
-  return <>Hello world</>;
+  return <SignUp />;
 }
 
 export default App;

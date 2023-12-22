@@ -22,7 +22,9 @@
     "baseUrl": "src",
     "paths": {
       "scss/*": ["scss/*"],
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "img/*": ["img/*"]
     }
   },
   "include": ["src"],
