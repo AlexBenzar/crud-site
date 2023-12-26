@@ -10,6 +10,8 @@ export default defineConfig({
       scss: "/src/scss/",
       pages: "/src/pages/",
       img: "/src/img/",
+      types: "/src/types/",
+      validation: "/src/validation/",
     },
   },
 });

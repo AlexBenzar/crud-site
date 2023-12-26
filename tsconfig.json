@@ -24,7 +24,9 @@
       "scss/*": ["scss/*"],
       "components/*": ["components/*"],
       "pages/*": ["pages/*"],
-      "img/*": ["img/*"]
+      "img/*": ["img/*"],
+      "types/*": ["types/*"],
+      "validation/*": ["validation/*"]
     }
   },
   "include": ["src"],

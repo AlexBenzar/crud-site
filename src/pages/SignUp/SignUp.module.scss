@@ -1,5 +1,3 @@
-@use "scss/variables";
-
 .signUp {
   height: 100%;
   width: 100%;
@@ -9,63 +7,18 @@
   background: url("img/bg/auth_bg.png") no-repeat center;
   background-size: cover;
 
-  .signUp__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 45px 50px;
-    border-radius: 38px;
-    background: rgba(variables.$black, $alpha: 0.92);
-
-    input[type="text"] {
-      padding: 20px;
-      border-radius: 20px;
-      width: 490px;
-      margin-bottom: 30px;
-      font-size: 21px;
-      font-weight: 400;
-      color: #341e11;
-    }
-  }
-  .signUp__name {
-    font-size: 45px;
-    font-weight: 400;
-    margin-bottom: 30px;
-  }
   .signUp__picture {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
-  }
-  .signUp__status {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 24px;
-    margin-bottom: 55px;
-    cursor: pointer;
-
-    input[type="checkbox"] {
-      width: 24px;
-      height: 24px;
-      background: #d9d9d9;
-    }
-  }
-  button {
-    border-radius: 20px;
-    background: #af253c;
-    color: #fff;
-    font-weight: 700;
-    font-size: 21px;
-    padding: 20px 100px;
-    margin-bottom: 50px;
-    cursor: pointer;
+    margin: 30px 0 20px;
   }
   .signUp__text {
-    span {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    a {
       color: #af253c;
       font-weight: 700;
       cursor: pointer;
