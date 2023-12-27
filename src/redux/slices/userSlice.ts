@@ -5,7 +5,7 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/" }),
   endpoints: (builder) => ({
-    postSignUp: builder.mutation<unknown, AuthForm>({
+    signUp: builder.mutation<unknown, AuthForm>({
       query: ({ username, email, password, isAdmin, picture }) => {
         const body = new FormData();
         body.append("username", username);
@@ -21,4 +21,4 @@ export const userApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { usePostSignUpMutation } = userApi;
+export const { useSignUpMutation } = userApi;
