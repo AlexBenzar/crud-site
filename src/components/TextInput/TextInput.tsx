@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./TextInput.module.scss";
 import { Field, ErrorMessage } from "formik";
 import { InputProps } from "types";
+import { Typography } from "..";
 
 export const TextInput: React.FC<InputProps> = ({ isBlack = false, ...props }) => {
   return (
@@ -12,7 +13,13 @@ export const TextInput: React.FC<InputProps> = ({ isBlack = false, ...props }) =
         placeholder={props.placeholder}
         className={`${styles.input} ${isBlack ? styles.black : ""}`}
       />
-      <ErrorMessage name={props.name || ""} component="div" />
+      <ErrorMessage name={props.name || ""}>
+        {(msg) => (
+          <Typography tag="div" variant="error-1">
+            {msg}
+          </Typography>
+        )}
+      </ErrorMessage>
     </label>
   );
 };

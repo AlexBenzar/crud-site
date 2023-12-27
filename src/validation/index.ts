@@ -8,4 +8,14 @@ export const validationSchema = Yup.object().shape({
     .max(15, "Password is to long")
     .required("Password is required"),
   isAdmin: Yup.boolean(),
+  picture: Yup.mixed()
+    .nullable()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .test("type", "Only the following formats are accepted: .jpeg, .jpg", (value: any) => {
+      return value ? value.type === "image/jpeg" || value.type === "image/png" : true;
+    })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .test("IMAGE_SIZE", "Uploaded image is too big", (value: any) => {
+      return value ? value?.size <= 1024 * 1024 : true;
+    }),
 });
