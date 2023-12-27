@@ -3,8 +3,10 @@ import { AuthForm } from "types";
 import styles from "./SignUp.module.scss";
 import { validationSchema } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   const initialValues: AuthForm = {
     username: "",
     email: "",
@@ -17,6 +19,7 @@ export const SignUp: React.FC = () => {
     setTimeout(() => {
       console.log(values);
       setSubmitting(false);
+      navigate("/signIn");
     }, 500);
   };
 
@@ -38,7 +41,7 @@ export const SignUp: React.FC = () => {
               <Typography tag="p" variant="body-1">
                 Have an account?
               </Typography>{" "}
-              <a href="#">Sign in</a>
+              <Link to="/signIn">Sign in</Link>
             </div>
           </CustomForm>
         )}
