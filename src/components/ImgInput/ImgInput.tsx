@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Avatar from "img/svg/avatar.svg";
 import styles from "./ImgInput.module.scss";
 import { Typography } from "..";
@@ -6,8 +6,8 @@ import { ErrorMessage } from "formik";
 import { ImageProps } from "types/index";
 
 export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName }) => {
-  const [preview, setPreview] = React.useState("");
-  const imageRef = React.useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState("");
+  const imageRef = useRef<HTMLInputElement>(null);
   const reader = new FileReader();
   if (image) {
     reader.readAsDataURL(image);
@@ -26,7 +26,7 @@ export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName
 
   return (
     <div className={styles.image}>
-      <img src={preview ? preview : Avatar} alt="avatar" />
+      <img src={preview || Avatar} alt="avatar" />
       <a href="#" onClick={ImageHandler}>
         Choose picture
       </a>

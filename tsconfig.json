@@ -26,7 +26,8 @@
       "pages/*": ["pages/*"],
       "img/*": ["img/*"],
       "types/*": ["types/*"],
-      "validation/*": ["validation/*"]
+      "validation/*": ["validation/*"],
+      "redux/*": ["redux/*"]
     }
   },
   "include": ["src"],

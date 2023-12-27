@@ -2,7 +2,7 @@
 @import "zero_style";
 
 .title-1 {
-  color: #f2ede7;
+  color: variables.$text-white;
   font-size: 45px;
   font-style: normal;
   font-weight: 700;
@@ -10,7 +10,7 @@
 }
 
 .body-1 {
-  color: #f2ede7;
+  color: variables.$text-white;
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
