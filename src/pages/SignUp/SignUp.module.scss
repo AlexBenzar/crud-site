@@ -1,3 +1,5 @@
+@use "scss/variables";
+
 .signUp {
   height: 100%;
   width: 100%;
@@ -11,7 +13,7 @@
     align-items: center;
     gap: 17px;
     a {
-      color: #af253c;
+      color: variables.$red;
       font-weight: 700;
       cursor: pointer;
     }

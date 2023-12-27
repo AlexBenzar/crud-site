@@ -1,3 +1,5 @@
+@use "scss/variables";
+
 .image {
   display: flex;
   align-items: center;
@@ -11,7 +13,7 @@
     object-fit: cover;
   }
   a {
-    color: #f2ede7;
+    color: variables.$text-white;
     text-decoration: none;
   }
 }

@@ -4,11 +4,11 @@ import styles from "./SignUp.module.scss";
 import { validationSchema } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
-import { usePostSignUpMutation } from "Redux/slices/userSlice";
+import { useSignUpMutation } from "Redux/slices/userSlice";
 
 export const SignUp: React.FC = () => {
   const navigate = useNavigate();
-  const [addUser] = usePostSignUpMutation();
+  const [addUser] = useSignUpMutation();
   const initialValues: AuthForm = {
     username: "",
     email: "",
@@ -17,12 +17,10 @@ export const SignUp: React.FC = () => {
     picture: null,
   };
 
-  const handleSubmit = (values: AuthForm, { setSubmitting }: FormikHelpers<AuthForm>) => {
-    setTimeout(async () => {
-      addUser(values);
-      setSubmitting(false);
-      navigate("/signIn");
-    }, 500);
+  const handleSubmit = async (values: AuthForm, { setSubmitting }: FormikHelpers<AuthForm>) => {
+    addUser(values);
+    setSubmitting(false);
+    navigate("/signIn");
   };
 
   return (

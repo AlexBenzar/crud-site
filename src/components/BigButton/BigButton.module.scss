@@ -1,7 +1,9 @@
+@use "scss/variables";
+
 .button {
   border-radius: 20px;
-  background: #af253c;
-  color: #fff;
+  background: variables.$red;
+  color: variables.$text-white;
   font-weight: 700;
   font-size: 21px;
   padding: 20px 100px;
