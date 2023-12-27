@@ -8,6 +8,11 @@ export default defineConfig({
     alias: {
       components: "/src/components/",
       scss: "/src/scss/",
+      pages: "/src/pages/",
+      img: "/src/img/",
+      types: "/src/types/",
+      validation: "/src/validation/",
+      Redux: "/src/Redux/",
     },
   },
 });

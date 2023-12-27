@@ -1,0 +1,17 @@
+@use "scss/variables";
+
+.label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-bottom: 55px;
+  cursor: pointer;
+
+  .input {
+    width: 24px;
+    height: 24px;
+    background: variables.$white;
+  }
+}

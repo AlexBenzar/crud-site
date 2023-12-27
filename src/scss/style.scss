@@ -1,2 +1,23 @@
 @use "variables";
 @import "zero_style";
+
+.title-1 {
+  color: variables.$text-white;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.body-1 {
+  color: variables.$text-white;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.error-1 {
+  color: variables.$red;
+  font-size: 16px;
+}
