@@ -4,6 +4,7 @@ import styles from "./SignUp.module.scss";
 import { validationSchema } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export const SignUp: React.FC = () => {
   };
 
   const handleSubmit = (values: FormikValues, { setSubmitting }: FormikHelpers<AuthForm>) => {
-    setTimeout(() => {
-      console.log(values);
+    setTimeout(async () => {
+      await axios.post("http://localhost:5000/api/signup", values);
       setSubmitting(false);
       navigate("/signIn");
     }, 500);
