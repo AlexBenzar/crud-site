@@ -1,13 +1,14 @@
-import { Formik, FormikValues, FormikHelpers } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { AuthForm } from "types";
 import styles from "./SignUp.module.scss";
 import { validationSchema } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { usePostSignUpMutation } from "Redux/slices/userSlice";
 
 export const SignUp: React.FC = () => {
   const navigate = useNavigate();
+  const [addUser] = usePostSignUpMutation();
   const initialValues: AuthForm = {
     username: "",
     email: "",
@@ -16,9 +17,9 @@ export const SignUp: React.FC = () => {
     picture: null,
   };
 
-  const handleSubmit = (values: FormikValues, { setSubmitting }: FormikHelpers<AuthForm>) => {
+  const handleSubmit = (values: AuthForm, { setSubmitting }: FormikHelpers<AuthForm>) => {
     setTimeout(async () => {
-      await axios.post("http://localhost:5000/api/signup", values);
+      addUser(values);
       setSubmitting(false);
       navigate("/signIn");
     }, 500);

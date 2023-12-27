@@ -17,6 +17,6 @@ export const validationSchema = Yup.object().shape({
     })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .test(ErrorMessages.PictureTooBig, (value: any) => {
-      return value ? value?.size <= 1024 * 1024 : true;
+      return value ? value?.size <= 1024 * 1024 * 5 : true;
     }),
 });
