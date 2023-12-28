@@ -4,7 +4,7 @@ import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignUpMutation } from "Redux/slices/userSlice";
+import { useSignUpMutation } from "store/slices/userSlice";
 
 export const SignUp: React.FC = () => {
   const navigate = useNavigate();

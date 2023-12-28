@@ -13,6 +13,7 @@ export default defineConfig({
       types: "/src/types/",
       validation: "/src/validation/",
       Redux: "/src/Redux/",
+      store: "/src/store/",
     },
   },
 });

@@ -5,7 +5,7 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/" }),
   endpoints: (builder) => ({
-    signUp: builder.mutation<unknown, SignUpForm>({
+    signUp: builder.mutation<{ message: string }, SignUpForm>({
       query: ({ username, email, password, isAdmin, picture }) => {
         const body = new FormData();
         body.append("username", username);

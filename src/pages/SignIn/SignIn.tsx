@@ -4,16 +4,16 @@ import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
 import { BigButton, CustomForm, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignInMutation } from "Redux/slices/userSlice";
+import { useSignInMutation } from "store/slices/userSlice";
 
 export const SignIn: React.FC = () => {
   const navigate = useNavigate();
-  const [signIn, user] = useSignInMutation();
+  const [signIn, { status, data, error }] = useSignInMutation();
   const initialValues: SignInForm = {
     username: "",
     password: "",
   };
-  console.log(user);
+  console.log({ status, data, error });
   const handleSubmit = async (values: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
     await signIn(values);
     setSubmitting(false);
