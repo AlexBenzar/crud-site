@@ -1,4 +1,4 @@
-import { SignUp } from "./pages";
+import { SignIn, SignUp } from "./pages";
 
 export const publicRoutes = [
   {
@@ -7,7 +7,7 @@ export const publicRoutes = [
   },
   {
     path: "/signIn",
-    Component: <div>Sign In</div>,
+    Component: <SignIn />,
   },
 ];
 

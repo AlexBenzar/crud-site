@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { AuthForm } from "types/index";
+import { SignInForm, SignUpForm } from "types/index";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/" }),
   endpoints: (builder) => ({
-    signUp: builder.mutation<unknown, AuthForm>({
+    signUp: builder.mutation<unknown, SignUpForm>({
       query: ({ username, email, password, isAdmin, picture }) => {
         const body = new FormData();
         body.append("username", username);
@@ -16,7 +16,14 @@ export const userApi = createApi({
         return { url: "signup", method: "POST", body, formData: true };
       },
     }),
+    signIn: builder.mutation<{ token: string }, SignInForm>({
+      query: (body) => ({
+        url: "signin",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation } = userApi;
+export const { useSignUpMutation, useSignInMutation } = userApi;
