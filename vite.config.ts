@@ -12,7 +12,6 @@ export default defineConfig({
       img: "/src/img/",
       types: "/src/types/",
       validation: "/src/validation/",
-      Redux: "/src/Redux/",
       store: "/src/store/",
     },
   },
