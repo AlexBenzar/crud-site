@@ -1,12 +1,15 @@
 import { FormikErrors } from "formik";
 
-export type AuthForm = {
+export interface SignInForm {
   username: string;
-  email: string;
   password: string;
+}
+
+export interface SignUpForm extends SignInForm {
+  email: string;
   isAdmin: boolean;
   picture: File | null;
-};
+}
 
 export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   isBlack?: boolean;
@@ -29,7 +32,7 @@ export type TypographyType = {
 };
 
 export type ImageProps = {
-  setFieldValue: (field: string, value: unknown, shouldValidate?: boolean | undefined) => Promise<void | FormikErrors<AuthForm>>;
+  setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => Promise<void | FormikErrors<SignUpForm>>;
   image: File | null;
   imageName: string;
 };

@@ -1,31 +1,28 @@
 import { Formik, FormikHelpers } from "formik";
-import { AuthForm } from "types";
+import { SignUpForm } from "types";
 import styles from "./SignUp.module.scss";
-import { validationSchema } from "validation";
+import { signUpValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
-import { Link, useNavigate } from "react-router-dom";
-import { useSignUpMutation } from "Redux/slices/userSlice";
+import { Link } from "react-router-dom";
+import { useSignUpMutation } from "store/slices/userSlice";
 
 export const SignUp: React.FC = () => {
-  const navigate = useNavigate();
-  const [addUser] = useSignUpMutation();
-  const initialValues: AuthForm = {
+  const [signUp] = useSignUpMutation();
+  const initialValues: SignUpForm = {
     username: "",
     email: "",
     password: "",
     isAdmin: false,
     picture: null,
   };
-
-  const handleSubmit = async (values: AuthForm, { setSubmitting }: FormikHelpers<AuthForm>) => {
-    addUser(values);
+  const handleSubmit = async (values: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
+    await signUp(values);
     setSubmitting(false);
-    navigate("/signIn");
   };
 
   return (
     <div className={styles.signUp}>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={signUpValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit, setFieldValue, values }) => (
           <CustomForm onSubmit={handleSubmit}>
             <Typography tag="h1" variant="title-1">

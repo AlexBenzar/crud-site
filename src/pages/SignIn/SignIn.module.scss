@@ -1,0 +1,24 @@
+@use "scss/variables";
+
+.signIn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("img/bg/auth_bg.png") no-repeat center;
+  background-size: cover;
+  h1 {
+    margin: 35px 0 60px;
+  }
+  .signUp__text {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    a {
+      color: variables.$red;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}

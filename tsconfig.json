@@ -27,7 +27,7 @@
       "img/*": ["img/*"],
       "types/*": ["types/*"],
       "validation/*": ["validation/*"],
-      "Redux/*": ["Redux/*"]
+      "store/*": ["store/*"]
     }
   },
   "include": ["src"],
