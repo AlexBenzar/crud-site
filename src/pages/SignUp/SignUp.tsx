@@ -3,11 +3,10 @@ import { SignUpForm } from "types";
 import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSignUpMutation } from "store/slices/userSlice";
 
 export const SignUp: React.FC = () => {
-  const navigate = useNavigate();
   const [signUp] = useSignUpMutation();
   const initialValues: SignUpForm = {
     username: "",
@@ -19,7 +18,6 @@ export const SignUp: React.FC = () => {
   const handleSubmit = async (values: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
     await signUp(values);
     setSubmitting(false);
-    navigate("/signIn");
   };
 
   return (

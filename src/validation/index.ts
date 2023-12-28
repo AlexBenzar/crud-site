@@ -7,7 +7,7 @@ export const signUpValidation = Yup.object().shape({
   password: Yup.string()
     .min(4, ErrorMessages.PasswordError)
     .max(15, ErrorMessages.PasswordError)
-    .required("Password is required"),
+    .required(ErrorMessages.PasswordEmpty),
   isAdmin: Yup.boolean(),
   picture: Yup.mixed()
     .nullable()
@@ -26,5 +26,5 @@ export const signInValidation = Yup.object().shape({
   password: Yup.string()
     .min(4, ErrorMessages.PasswordError)
     .max(15, ErrorMessages.PasswordError)
-    .required("Password is required"),
+    .required(ErrorMessages.PasswordEmpty),
 });
