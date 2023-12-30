@@ -6,7 +6,7 @@ import { BigButton, CustomForm, TextInput, Typography } from "components/index";
 import { Link } from "react-router-dom";
 import { useSignInMutation } from "store/slices/userSlice";
 
-export const SignIn: React.FC = () => {
+export const SignIn: React.FC<{ onSubmit?: (value: SignInForm) => SignInForm }> = ({ onSubmit }) => {
   const [signIn] = useSignInMutation();
   const initialValues: SignInForm = {
     username: "",
@@ -14,6 +14,9 @@ export const SignIn: React.FC = () => {
   };
   const handleSubmit = async (values: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
     await signIn(values);
+    if (onSubmit) {
+      onSubmit(values);
+    }
     setSubmitting(false);
   };
 
