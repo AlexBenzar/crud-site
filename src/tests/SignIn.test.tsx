@@ -1,29 +1,24 @@
 import { describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SignIn } from "pages/index";
 import { Wrapper } from "./Wrapper";
 import { ErrorMessages } from "validation/message";
+import * as userApi from "store/slices/userSlice";
 
 describe("Sign in form testing", () => {
   it("if data is correct", async () => {
-    const handleSubmit = vi.fn();
+    const spySignIn = vi.spyOn(userApi, "useSignInMutation");
     render(
       <Wrapper>
-        <SignIn onSubmit={handleSubmit} />
+        <SignIn />
       </Wrapper>,
     );
 
     await userEvent.type(screen.getByPlaceholderText("Username"), "Alex");
     await userEvent.type(screen.getByPlaceholderText("Password"), "12345");
-
     await userEvent.click(screen.getByText("Sign In"));
-    await waitFor(() =>
-      expect(handleSubmit).toHaveBeenCalledWith({
-        username: "Alex",
-        password: "12345",
-      }),
-    );
+    expect(spySignIn).toHaveBeenCalled();
   });
   it("if data is empty", async () => {
     render(

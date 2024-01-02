@@ -6,7 +6,7 @@ import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from
 import { Link } from "react-router-dom";
 import { useSignUpMutation } from "store/slices/userSlice";
 
-export const SignUp: React.FC<{ onSubmit?: (value: SignUpForm) => SignUpForm }> = ({ onSubmit }) => {
+export const SignUp: React.FC = () => {
   const [signUp] = useSignUpMutation();
   const initialValues: SignUpForm = {
     username: "",
@@ -17,9 +17,6 @@ export const SignUp: React.FC<{ onSubmit?: (value: SignUpForm) => SignUpForm }> 
   };
   const handleSubmit = async (values: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
     await signUp(values);
-    if (onSubmit) {
-      onSubmit(values);
-    }
     setSubmitting(false);
   };
 
