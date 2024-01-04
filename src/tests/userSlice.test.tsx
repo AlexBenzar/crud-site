@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { act, renderHook } from "@testing-library/react";
-import { useSignInMutation, useSignUpMutation } from "store/slices/userSlice";
+import { useSignInMutation, useSignUpMutation } from "store/slices/authSlice";
 import { Wrapper } from "./Wrapper";
 
 describe("userSlice testing", () => {

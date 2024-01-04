@@ -3,18 +3,24 @@ import { SignInForm } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
 import { BigButton, CustomForm, TextInput, Typography } from "components/index";
-import { Link } from "react-router-dom";
-import { useSignInMutation } from "store/slices/userSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useSignInMutation } from "store/slices/authSlice";
+import { useAppDispatch } from "store/hooks";
+import { setCredentials } from "store/slices/userSlice";
 
 export const SignIn: React.FC = () => {
   const [signIn] = useSignInMutation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const initialValues: SignInForm = {
     username: "",
     password: "",
   };
   const handleSubmit = async (values: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
-    await signIn(values);
+    const token = await signIn(values).unwrap();
+    dispatch(setCredentials({ ...token }));
     setSubmitting(false);
+    navigate("/");
   };
 
   return (

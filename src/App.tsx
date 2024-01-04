@@ -1,10 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { publicRoutes } from "./routes";
 import "scss/style.scss";
+import { useAppSelector } from "store/hooks";
 
 function App() {
-  const user = false;
-  return user ? (
+  const token = useAppSelector((state) => state.user.token);
+  console.log("token: ", token);
+
+  return token ? (
     <Routes>
       <Route path="*" element={<h1>Private Route</h1>} />
     </Routes>
