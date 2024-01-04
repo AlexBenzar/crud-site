@@ -4,7 +4,7 @@ import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
 import { Link } from "react-router-dom";
-import { useSignUpMutation } from "store/slices/userSlice";
+import { useSignUpMutation } from "store/slices/authSlice";
 
 export const SignUp: React.FC = () => {
   const [signUp] = useSignUpMutation();

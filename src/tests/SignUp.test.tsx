@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { SignUp } from "pages/index";
 import { Wrapper } from "./Wrapper";
 import { ErrorMessages } from "validation/message";
-import * as userApi from "store/slices/userSlice";
+import * as userApi from "store/slices/authSlice";
 
 describe("Sign in form testing", () => {
   it("if data is correct", async () => {

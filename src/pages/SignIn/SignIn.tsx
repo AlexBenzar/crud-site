@@ -1,20 +1,29 @@
 import { Formik, FormikHelpers } from "formik";
-import { SignInForm } from "types";
+import { SignInForm, UserResponse } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
 import { BigButton, CustomForm, TextInput, Typography } from "components/index";
-import { Link } from "react-router-dom";
-import { useSignInMutation } from "store/slices/userSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useSignInMutation } from "store/slices/authSlice";
+import { useAppDispatch } from "store/hooks";
+import { setCredentials } from "store/slices/userSlice";
 
 export const SignIn: React.FC = () => {
-  const [signIn] = useSignInMutation();
+  const [signIn, { error }] = useSignInMutation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const initialValues: SignInForm = {
     username: "",
     password: "",
   };
   const handleSubmit = async (values: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
-    await signIn(values);
-    setSubmitting(false);
+    const { data, error }: { data?: UserResponse; error?: unknown } = await signIn(values);
+
+    if (!error && data) {
+      dispatch(setCredentials({ ...data }));
+      setSubmitting(false);
+      navigate("/");
+    }
   };
 
   return (
@@ -34,6 +43,11 @@ export const SignIn: React.FC = () => {
               </Typography>
               <Link to="/signUp">Sign up</Link>
             </div>
+            {error && "data" in error && (
+              <Typography tag="div" variant="error-1">
+                {error.data.message}
+              </Typography>
+            )}
           </CustomForm>
         )}
       </Formik>
