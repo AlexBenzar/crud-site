@@ -5,11 +5,11 @@ import { useAppSelector } from "store/hooks";
 
 function App() {
   const token = useAppSelector((state) => state.user.token);
-  console.log("token: ", token);
 
   return token ? (
     <Routes>
-      <Route path="*" element={<h1>Private Route</h1>} />
+      <Route path="/" element={<h1>Token: {token}</h1>} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   ) : (
     <Routes>

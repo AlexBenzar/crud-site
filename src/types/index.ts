@@ -36,3 +36,16 @@ export type ImageProps = {
   image: File | null;
   imageName: string;
 };
+
+export interface ErrorMessage {
+  data: { message: string };
+  status: number;
+}
+
+export interface UserResponse {
+  token: string;
+}
+
+export type userSliceType = {
+  token: null | string;
+};
