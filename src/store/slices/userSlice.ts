@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserResponse, userSliceType } from "types/index";
+import { UserResponse } from "types/index";
 
-const initialState: userSliceType = {
+const initialState: UserResponse = {
   token: null,
 };
 

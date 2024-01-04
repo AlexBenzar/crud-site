@@ -43,9 +43,5 @@ export interface ErrorMessage {
 }
 
 export interface UserResponse {
-  token: string;
-}
-
-export type userSliceType = {
   token: null | string;
-};
+}

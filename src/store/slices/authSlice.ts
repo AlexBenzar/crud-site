@@ -1,11 +1,12 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "store/store";
+import { URL } from "store/url";
 import { ErrorMessage, SignInForm, SignUpForm, UserResponse } from "types/index";
 
 export const authApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/",
+    baseUrl: `${URL}api/`,
     credentials: "same-origin",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
