@@ -27,7 +27,15 @@ describe("userSlice testing", () => {
     await act(() => result.current[0](user));
     const { data, status } = result.current[1];
 
-    expect(data).toStrictEqual({ message: "success" });
+    expect(data).toStrictEqual({ token: "token" });
     expect(status).toBe("fulfilled");
+  });
+  it("if sign up request to users database is rejected", async () => {
+    const user = { email: "alex@gmai", isAdmin: false, password: "123", picture: null, username: "" };
+    const { result } = renderHook(() => useSignUpMutation(), { wrapper: Wrapper });
+    await act(() => result.current[0](user));
+    const { status } = result.current[1];
+
+    expect(status).toBe("rejected");
   });
 });
