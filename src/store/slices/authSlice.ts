@@ -17,7 +17,7 @@ export const authApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
-    signUp: builder.mutation<{ message: string }, SignUpForm>({
+    signUp: builder.mutation<UserResponse, SignUpForm>({
       query: ({ username, email, password, isAdmin, picture }) => {
         const body = new FormData();
         body.append("username", username);

@@ -12,7 +12,11 @@ export const server = setupServer(
     }
     return HttpResponse.error();
   }),
-  http.post(URL + "signup", async () => {
-    return HttpResponse.json({ message: "success" });
+  http.post(URL + "signup", async ({ request }) => {
+    const data = await request.formData();
+    if (data.get("username") == "Alex" && data.get("password") == "12345") {
+      return HttpResponse.json({ token: "token" });
+    }
+    return HttpResponse.error();
   }),
 );
