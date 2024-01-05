@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { publicRoutes } from "./routes";
+import { publicRoutes, privateRoutes } from "./routes";
 import "scss/style.scss";
 import { useAppSelector } from "store/hooks";
 
@@ -8,8 +8,11 @@ function App() {
 
   return token ? (
     <Routes>
-      <Route path="/" element={<h1>Token: {token}</h1>} />
-      <Route path="*" element={<Navigate to="/" />} />
+      {privateRoutes.map(({ path, Component }) => (
+        <Route key={path} path={path} element={Component} />
+      ))}
+
+      <Route path="*" element={<Navigate to="/profiles" />} />
     </Routes>
   ) : (
     <Routes>
