@@ -8,6 +8,10 @@
   justify-content: center;
   background: url("img/bg/auth_bg.png") no-repeat center;
   background-size: cover;
+  .signUp__buttons {
+    display: flex;
+    width: 100%;
+  }
   .signUp__text {
     display: flex;
     align-items: center;
