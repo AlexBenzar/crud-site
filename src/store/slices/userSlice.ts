@@ -1,7 +1,12 @@
+import Cookies from "universal-cookie";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserResponse } from "types/index";
 
-const initialState: UserResponse = {
+const cookies = new Cookies();
+
+console.log(cookies.get("token"));
+
+const initialState: UserResponse = cookies.get("token") ?? {
   token: null,
 };
 

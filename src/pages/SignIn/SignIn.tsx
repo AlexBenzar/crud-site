@@ -1,8 +1,9 @@
+import Cookies from "universal-cookie";
 import { Formik, FormikHelpers } from "formik";
 import { SignInForm, UserResponse } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
-import { BigButton, CustomForm, TextInput, Typography } from "components/index";
+import { BigButton, Checkbox, CustomForm, TextInput, Typography } from "components/index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
@@ -15,12 +16,16 @@ export const SignIn: React.FC = () => {
   const initialValues: SignInForm = {
     username: "",
     password: "",
+    rememberMe: false,
   };
-  const handleSubmit = async (values: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
+  const handleSubmit = async ({ rememberMe, ...values }: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
     const { data, error }: { data?: UserResponse; error?: unknown } = await signIn(values);
-
     if (!error && data) {
       dispatch(setCredentials({ ...data }));
+      if (rememberMe) {
+        const cookies = new Cookies();
+        cookies.set("token", data);
+      }
       setSubmitting(false);
       navigate("/");
     }
@@ -37,6 +42,7 @@ export const SignIn: React.FC = () => {
             <TextInput type="username" name="username" placeholder="Username" />
             <TextInput type="password" name="password" placeholder="Password" />
             <BigButton text={"Sign In"} isSubmitting={isSubmitting} />
+            <Checkbox text="Remember me" name="rememberMe" />
             <div className={styles.signUp__text}>
               <Typography tag="p" variant="body-1">
                 Have an account?
