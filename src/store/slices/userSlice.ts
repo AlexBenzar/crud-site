@@ -4,8 +4,6 @@ import { UserResponse } from "types/index";
 
 const cookies = new Cookies();
 
-console.log(cookies.get("token"));
-
 const initialState: UserResponse = cookies.get("token") ?? {
   token: null,
 };

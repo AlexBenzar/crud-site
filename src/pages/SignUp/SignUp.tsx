@@ -27,7 +27,7 @@ export const SignUp: React.FC = () => {
       dispatch(setCredentials({ ...data }));
       if (rememberMe) {
         const cookies = new Cookies();
-        cookies.set("token", data);
+        cookies.set("token", data, { expires: new Date(Date.now() + 86400000) });
       }
       setSubmitting(false);
       navigate("/");

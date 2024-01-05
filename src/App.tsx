@@ -4,7 +4,7 @@ import "scss/style.scss";
 import { useAppSelector } from "store/hooks";
 
 function App() {
-  const token = useAppSelector((state) => state.user.token);
+  const token = !!useAppSelector((state) => state.user.token);
 
   return token ? (
     <Routes>

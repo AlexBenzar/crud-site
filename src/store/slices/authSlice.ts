@@ -11,7 +11,7 @@ export const authApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
       if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
+        headers.set("authorization", `Bearer ${token}`);
       }
       return headers;
     },
@@ -35,7 +35,13 @@ export const authApi = createApi({
         body,
       }),
     }),
+    Profiles: builder.query<unknown, void>({
+      query: () => ({
+        url: "user",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useProfilesQuery } = authApi;
