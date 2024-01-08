@@ -35,25 +35,18 @@ export const SignIn: React.FC = () => {
     <div className={styles.signIn}>
       <Formik initialValues={initialValues} validationSchema={signInValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit }) => (
-          <CustomForm onSubmit={handleSubmit}>
-            <Typography tag="h1" variant="title-1">
+          <CustomForm onSubmit={handleSubmit} className={styles.signIn__form}>
+            <Typography variant="title-1" className={styles.signIn__h1}>
               Sign in
             </Typography>
-            <TextInput type="username" name="username" placeholder="Username" />
-            <TextInput type="password" name="password" placeholder="Password" />
-            <BigButton text={"Sign In"} isSubmitting={isSubmitting} />
+            <TextInput type="username" name="username" placeholder="Username" className={styles.signIn__input} />
+            <TextInput type="password" name="password" placeholder="Password" className={styles.signIn__input} />
+            <BigButton text={"Sign In"} isSubmitting={isSubmitting} className={styles.signIn__button} />
             <Checkbox text="Remember me" name="rememberMe" />
-            <div className={styles.signUp__text}>
-              <Typography tag="p" variant="body-1">
-                Have an account?
-              </Typography>
-              <Link to="/signUp">Sign up</Link>
-            </div>
-            {error && "data" in error && (
-              <Typography tag="div" variant="error-1">
-                {error.data.message}
-              </Typography>
-            )}
+            <Typography variant="body-1" className={styles.signUp__text}>
+              Have an account? <Link to="/signUp">Sign up</Link>
+            </Typography>
+            {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
           </CustomForm>
         )}
       </Formik>

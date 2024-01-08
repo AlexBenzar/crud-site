@@ -6,7 +6,7 @@ import { Typography } from "..";
 
 export const TextInput: React.FC<InputProps> = ({ isBlack = false, ...props }) => {
   return (
-    <label htmlFor={props.name} className={styles.label}>
+    <label htmlFor={props.name} className={`${styles.label} ${props.className}`}>
       <Field
         type={props.type}
         name={props.name}

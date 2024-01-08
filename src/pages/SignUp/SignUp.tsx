@@ -38,30 +38,20 @@ export const SignUp: React.FC = () => {
     <div className={styles.signUp}>
       <Formik initialValues={initialValues} validationSchema={signUpValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit, setFieldValue, values }) => (
-          <CustomForm onSubmit={handleSubmit}>
-            <Typography tag="h1" variant="title-1">
+          <CustomForm onSubmit={handleSubmit} className={styles.signUp__form}>
+            <Typography variant="title-1" className={styles.signUp__h1}>
               Sign up
             </Typography>
-            <ImgInput setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
-            <TextInput type="text" name="username" placeholder="Username" />
-            <TextInput type="email" name="email" placeholder="Email" />
-            <TextInput type="password" name="password" placeholder="Password" />
-            <div className={styles.signUp__buttons}>
-              <Checkbox name="isAdmin" text="Admin" />
-              <Checkbox text="Remember me" name="rememberMe" />
-            </div>
-            <BigButton text={"Sign Up"} isSubmitting={isSubmitting} />
-            <div className={styles.signUp__text}>
-              <Typography tag="p" variant="body-1">
-                Have an account?
-              </Typography>{" "}
-              <Link to="/signIn">Sign in</Link>
-            </div>
-            {error && "data" in error && (
-              <Typography tag="div" variant="error-1">
-                {error.data.message}
-              </Typography>
-            )}
+            <ImgInput className={styles.signUp__img} setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
+            <TextInput type="text" name="username" placeholder="Username" className={styles.signUp__input} />
+            <TextInput type="email" name="email" placeholder="Email" className={styles.signUp__input} />
+            <TextInput type="password" name="password" placeholder="Password" className={styles.signUp__input} />
+            <Checkbox name="isAdmin" text="Admin" className={styles.signUp__checkbox} />
+            <BigButton text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
+            <Typography variant="body-1" className={styles.signUp__text}>
+              Have an account? <Link to="/signIn">Sign in</Link>
+            </Typography>
+            {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
           </CustomForm>
         )}
       </Formik>

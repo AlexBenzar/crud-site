@@ -17,26 +17,25 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   text?: string;
 }
 
-export type BigButtonType = {
+export interface BigButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   isSubmitting: boolean;
-};
+}
 
 export interface FormInterface extends React.HTMLProps<HTMLFormElement> {
   children: React.ReactNode;
 }
 
-export type TypographyType = {
-  tag: "div" | "p" | "h1";
+export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
   variant: "title-1" | "body-1" | "error-1";
-  children: string;
-};
+  children: React.ReactNode;
+}
 
-export type ImageProps = {
+export interface ImageProps extends React.HTMLAttributes<HTMLDivElement> {
   setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => Promise<void | FormikErrors<SignUpForm>>;
   image: File | null;
   imageName: string;
-};
+}
 
 export interface ErrorMessage {
   data: { message: string };

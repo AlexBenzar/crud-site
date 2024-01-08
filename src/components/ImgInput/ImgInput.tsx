@@ -5,7 +5,7 @@ import { Typography } from "..";
 import { ErrorMessage } from "formik";
 import { ImageProps } from "types/index";
 
-export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName }) => {
+export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName, ...props }) => {
   const [preview, setPreview] = useState("");
   const imageRef = useRef<HTMLInputElement>(null);
   const reader = new FileReader();
@@ -25,7 +25,7 @@ export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName
   }
 
   return (
-    <div className={styles.image}>
+    <div className={`${styles.image} ${props.className}`}>
       <img src={preview || Avatar} alt="avatar" />
       <a href="#" onClick={ImageHandler}>
         Choose picture
@@ -41,13 +41,7 @@ export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName
           }
         }}
       />
-      <ErrorMessage name={imageName}>
-        {(msg) => (
-          <Typography tag="div" variant="error-1">
-            {msg}
-          </Typography>
-        )}
-      </ErrorMessage>
+      <ErrorMessage name={imageName}>{(msg) => <Typography variant="error-1">{msg}</Typography>}</ErrorMessage>
     </div>
   );
 };

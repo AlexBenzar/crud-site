@@ -8,17 +8,23 @@
   justify-content: center;
   background: url("img/bg/auth_bg.png") no-repeat center;
   background-size: cover;
-  h1 {
-    margin: 35px 0 60px;
+  &__form {
+    padding: 75px 45px 95px;
+  }
+  &__h1 {
+    margin-bottom: 65px;
+  }
+  &__input {
+    margin-bottom: 20px;
+  }
+  &__button {
+    margin-bottom: 50px;
   }
   label {
     justify-content: center;
     margin-bottom: 30px;
   }
   .signUp__text {
-    display: flex;
-    align-items: center;
-    gap: 17px;
     margin-bottom: 20px;
     a {
       color: variables.$red;

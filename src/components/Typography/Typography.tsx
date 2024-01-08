@@ -1,11 +1,10 @@
 import React from "react";
 import { TypographyType } from "types/index";
 
-export const Typography: React.FC<TypographyType> = ({ tag = "div", children, variant }) => {
-  const Component = tag;
+export const Typography: React.FC<TypographyType> = ({ children, variant, ...props }) => {
   return (
-    <Component data-testid={children} className={variant}>
+    <div data-testid={children} className={`${variant} ${props.className}`}>
       {children}
-    </Component>
+    </div>
   );
 };

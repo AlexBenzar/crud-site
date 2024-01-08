@@ -4,7 +4,7 @@ import { FormInterface } from "types/index";
 
 export const CustomForm: React.FC<FormInterface> = ({ children, ...props }) => {
   return (
-    <form className={styles.form} onSubmit={props.onSubmit}>
+    <form className={`${props.className} ${styles.form}`} onSubmit={props.onSubmit}>
       {children}
     </form>
   );
