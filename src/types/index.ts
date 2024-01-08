@@ -45,3 +45,13 @@ export interface ErrorMessage {
 export interface UserResponse {
   token: null | string;
 }
+
+export type User = {
+  email: string;
+  password: string;
+  picture: string;
+  role: string;
+  username: string;
+  __v: number;
+  _id: string;
+};

@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "store/store";
 import { URL } from "store/url";
-import { ErrorMessage, SignInForm, SignUpForm, UserResponse } from "types/index";
+import { ErrorMessage, User, SignInForm, SignUpForm, UserResponse } from "types/index";
 
 export const authApi = createApi({
   reducerPath: "userApi",
@@ -35,7 +35,7 @@ export const authApi = createApi({
         body,
       }),
     }),
-    Profiles: builder.query<unknown, void>({
+    Profiles: builder.query<User, void>({
       query: () => ({
         url: "user",
         method: "GET",
