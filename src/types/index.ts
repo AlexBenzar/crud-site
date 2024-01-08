@@ -3,6 +3,7 @@ import { FormikErrors } from "formik";
 export interface SignInForm {
   username: string;
   password: string;
+  rememberMe?: boolean;
 }
 
 export interface SignUpForm extends SignInForm {

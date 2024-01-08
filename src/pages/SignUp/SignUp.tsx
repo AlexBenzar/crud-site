@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
 import { setCredentials } from "store/slices/userSlice";
+import Cookies from "universal-cookie";
 
 export const SignUp: React.FC = () => {
   const [signUp, { error }] = useSignUpMutation();
@@ -18,11 +19,16 @@ export const SignUp: React.FC = () => {
     password: "",
     isAdmin: false,
     picture: null,
+    rememberMe: false,
   };
-  const handleSubmit = async (values: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
+  const handleSubmit = async ({ rememberMe, ...values }: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
     const { data, error }: { data?: UserResponse; error?: unknown } = await signUp(values);
     if (!error && data) {
       dispatch(setCredentials({ ...data }));
+      if (rememberMe) {
+        const cookies = new Cookies();
+        cookies.set("token", data, { expires: new Date(Date.now() + 86400000) });
+      }
       setSubmitting(false);
       navigate("/");
     }
@@ -40,7 +46,10 @@ export const SignUp: React.FC = () => {
             <TextInput type="text" name="username" placeholder="Username" />
             <TextInput type="email" name="email" placeholder="Email" />
             <TextInput type="password" name="password" placeholder="Password" />
-            <Checkbox name="isAdmin" text="Admin" />
+            <div className={styles.signUp__buttons}>
+              <Checkbox name="isAdmin" text="Admin" />
+              <Checkbox text="Remember me" name="rememberMe" />
+            </div>
             <BigButton text={"Sign Up"} isSubmitting={isSubmitting} />
             <div className={styles.signUp__text}>
               <Typography tag="p" variant="body-1">
