@@ -40,6 +40,7 @@ export const authApi = createApi({
         url: "user",
         method: "GET",
       }),
+      forceRefetch: () => true,
     }),
   }),
 });

@@ -15,7 +15,7 @@ export const Layout: React.FC = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { data } = useProfilesQuery();
+  const { data, isLoading, isFetching } = useProfilesQuery();
   function logOutHandler() {
     dispatch(logOut());
     if (cookies.get("token")) {
@@ -23,40 +23,44 @@ export const Layout: React.FC = () => {
     }
     navigate("/");
   }
-  if (data) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.sidebar}>
-          <div className={styles.sidebar__profile}>
-            <div className={styles.sidebar__img}>
-              <img src={data.picture ?? Avatar} alt="profile pic" />
-            </div>
-            <div className={styles.sidebar__username}>{data.username}</div>
-          </div>
-          <div className={styles.sidebar__links}>
-            <Link to="/profiles">
-              <img src={Profiles} />
-              Profiles
-            </Link>
-            {data.role == "admin" && (
-              <>
-                <Link to="/profiles">
-                  <img src={Users} />
-                  Users
-                </Link>
-                <Link to="/profiles">
-                  <img src={Dashboard} />
-                  Dashboard
-                </Link>
-              </>
-            )}
-          </div>
-          <div className={styles.sidebar__button}>
-            <button onClick={logOutHandler}>Log out</button>
-          </div>
-        </div>
-        <Outlet />
-      </div>
-    );
+
+  if (isLoading || isFetching) {
+    return "Loading...";
   }
+  return data ? (
+    <div className={styles.container}>
+      <div className={styles.sidebar}>
+        <div className={styles.sidebar__profile}>
+          <div className={styles.sidebar__img}>
+            <img src={data.picture ?? Avatar} alt="profile pic" />
+          </div>
+          <div className={styles.sidebar__username}>{data.username}</div>
+        </div>
+        <div className={styles.sidebar__links}>
+          <Link to="/profiles">
+            <img src={Profiles} />
+            Profiles
+          </Link>
+          {data.role == "admin" && (
+            <>
+              <Link to="/profiles">
+                <img src={Users} />
+                Users
+              </Link>
+              <Link to="/profiles">
+                <img src={Dashboard} />
+                Dashboard
+              </Link>
+            </>
+          )}
+        </div>
+        <div className={styles.sidebar__button}>
+          <button onClick={logOutHandler}>Log out</button>
+        </div>
+      </div>
+      <Outlet />
+    </div>
+  ) : (
+    <>Error occur</>
+  );
 };
