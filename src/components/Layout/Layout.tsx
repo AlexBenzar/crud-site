@@ -1,6 +1,6 @@
 import styles from "./Layout.module.scss";
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "store/hooks";
 import { logOut } from "store/slices/userSlice";
@@ -37,20 +37,20 @@ export const Layout: React.FC = () => {
           <div className={styles.sidebar__username}>{data.username}</div>
         </div>
         <div className={styles.sidebar__links}>
-          <Link to="/profiles">
+          <NavLink to="/profiles">
             <img src={Profiles} />
             Profiles
-          </Link>
+          </NavLink>
           {data.role == "admin" && (
             <>
-              <Link to="/profiles">
+              <NavLink to="/users">
                 <img src={Users} />
                 Users
-              </Link>
-              <Link to="/profiles">
+              </NavLink>
+              <NavLink to="/dashboard">
                 <img src={Dashboard} />
                 Dashboard
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
