@@ -42,7 +42,7 @@ export const SignIn: React.FC = () => {
             <TextInput type="username" name="username" placeholder="Username" className={styles.signIn__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signIn__input} />
             <BigButton text={"Sign In"} isSubmitting={isSubmitting} className={styles.signIn__button} />
-            <Checkbox text="Remember me" name="rememberMe" />
+            <Checkbox text="Remember me" name="rememberMe" className={styles.signIn__checkbox} />
             <Typography variant="body-1" className={styles.signUp__text}>
               Have an account? <Link to="/signUp">Sign up</Link>
             </Typography>

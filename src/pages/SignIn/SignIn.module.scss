@@ -9,7 +9,7 @@
   background: url("img/bg/auth_bg.png") no-repeat center;
   background-size: cover;
   &__form {
-    padding: 75px 45px 95px;
+    padding: 75px 45px 75px;
   }
   &__h1 {
     margin-bottom: 65px;
@@ -20,9 +20,11 @@
   &__button {
     margin-bottom: 50px;
   }
-  label {
+  &__checkbox {
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
   }
   .signUp__text {
     margin-bottom: 20px;
