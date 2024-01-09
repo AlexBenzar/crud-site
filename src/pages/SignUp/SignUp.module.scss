@@ -8,14 +8,27 @@
   justify-content: center;
   background: url("img/bg/auth_bg.png") no-repeat center;
   background-size: cover;
-  .signUp__buttons {
-    display: flex;
+  &__form {
+    padding: 40px 45px 50px;
+  }
+  &__h1 {
+    margin-bottom: 30px;
+  }
+  &__img {
+    margin-bottom: 20px;
+  }
+  &__input {
+    margin-bottom: 20px;
+  }
+  &__checkbox {
     width: 100%;
+    display: flex;
+    margin-bottom: 55px;
+  }
+  &__button {
+    margin-bottom: 50px;
   }
   .signUp__text {
-    display: flex;
-    align-items: center;
-    gap: 17px;
     margin-bottom: 20px;
     a {
       color: variables.$red;

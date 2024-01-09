@@ -1,5 +1,5 @@
 import { Formik, FormikHelpers } from "formik";
-import { SignUpForm, UserResponse } from "types";
+import { RegistrationType, UserResponse } from "types";
 import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
@@ -13,7 +13,7 @@ export const SignUp: React.FC = () => {
   const [signUp, { error }] = useSignUpMutation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const initialValues: SignUpForm = {
+  const initialValues: RegistrationType = {
     username: "",
     email: "",
     password: "",
@@ -21,7 +21,10 @@ export const SignUp: React.FC = () => {
     picture: null,
     rememberMe: false,
   };
-  const handleSubmit = async ({ rememberMe, ...values }: SignUpForm, { setSubmitting }: FormikHelpers<SignUpForm>) => {
+  const handleSubmit = async (
+    { rememberMe, ...values }: RegistrationType,
+    { setSubmitting }: FormikHelpers<RegistrationType>,
+  ) => {
     const { data, error }: { data?: UserResponse; error?: unknown } = await signUp(values);
     if (!error && data) {
       dispatch(setCredentials({ ...data }));
@@ -38,30 +41,23 @@ export const SignUp: React.FC = () => {
     <div className={styles.signUp}>
       <Formik initialValues={initialValues} validationSchema={signUpValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit, setFieldValue, values }) => (
-          <CustomForm onSubmit={handleSubmit}>
-            <Typography tag="h1" variant="title-1">
+          <CustomForm onSubmit={handleSubmit} className={styles.signUp__form}>
+            <Typography variant="title-1" className={styles.signUp__h1}>
               Sign up
             </Typography>
-            <ImgInput setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
-            <TextInput type="text" name="username" placeholder="Username" />
-            <TextInput type="email" name="email" placeholder="Email" />
-            <TextInput type="password" name="password" placeholder="Password" />
-            <div className={styles.signUp__buttons}>
+            <ImgInput className={styles.signUp__img} setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
+            <TextInput type="text" name="username" placeholder="Username" className={styles.signUp__input} />
+            <TextInput type="email" name="email" placeholder="Email" className={styles.signUp__input} />
+            <TextInput type="password" name="password" placeholder="Password" className={styles.signUp__input} />
+            <div className={styles.signUp__checkbox}>
               <Checkbox name="isAdmin" text="Admin" />
               <Checkbox text="Remember me" name="rememberMe" />
             </div>
-            <BigButton text={"Sign Up"} isSubmitting={isSubmitting} />
-            <div className={styles.signUp__text}>
-              <Typography tag="p" variant="body-1">
-                Have an account?
-              </Typography>{" "}
-              <Link to="/signIn">Sign in</Link>
-            </div>
-            {error && "data" in error && (
-              <Typography tag="div" variant="error-1">
-                {error.data.message}
-              </Typography>
-            )}
+            <BigButton text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
+            <Typography variant="body-1" className={styles.signUp__text}>
+              Have an account? <Link to="/signIn">Sign in</Link>
+            </Typography>
+            {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
           </CustomForm>
         )}
       </Formik>

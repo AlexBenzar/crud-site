@@ -6,20 +6,14 @@ import { Typography } from "..";
 
 export const TextInput: React.FC<InputProps> = ({ isBlack = false, ...props }) => {
   return (
-    <label htmlFor={props.name} className={styles.label}>
+    <label htmlFor={props.name} className={`${styles.label} ${props.className}`}>
       <Field
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
         className={`${styles.input} ${isBlack ? styles.black : ""}`}
       />
-      <ErrorMessage name={props.name || ""}>
-        {(msg) => (
-          <Typography tag="div" variant="error-1">
-            {msg}
-          </Typography>
-        )}
-      </ErrorMessage>
+      <ErrorMessage name={props.name || ""}>{(msg) => <Typography variant="error-1">{msg}</Typography>}</ErrorMessage>
     </label>
   );
 };
