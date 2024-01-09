@@ -17,7 +17,7 @@ describe("Sign in form testing", () => {
     await userEvent.type(screen.getByPlaceholderText("Username"), "Alex");
     await userEvent.type(screen.getByPlaceholderText("Email"), "alex@gmail.com");
     await userEvent.type(screen.getByPlaceholderText("Password"), "12345");
-    await userEvent.click(screen.getByTestId("checkbox"));
+    await userEvent.click(screen.getAllByTestId("checkbox")[0]);
     await userEvent.click(screen.getByText("Sign Up"));
     expect(spySignIn).toHaveBeenCalled();
   });
