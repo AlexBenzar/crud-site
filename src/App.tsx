@@ -9,7 +9,7 @@ function App() {
 
   return token ? (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route element={<Layout />}>
         {privateRoutes.map(({ path, Component }) => (
           <Route key={path} path={path} element={Component} />
         ))}

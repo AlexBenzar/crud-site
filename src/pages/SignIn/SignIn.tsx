@@ -1,6 +1,6 @@
 import Cookies from "universal-cookie";
 import { Formik, FormikHelpers } from "formik";
-import { SignInForm, UserResponse } from "types";
+import { AuthType, UserResponse } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
 import { BigButton, Checkbox, CustomForm, TextInput, Typography } from "components/index";
@@ -13,12 +13,12 @@ export const SignIn: React.FC = () => {
   const [signIn, { error }] = useSignInMutation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const initialValues: SignInForm = {
+  const initialValues: AuthType = {
     username: "",
     password: "",
     rememberMe: false,
   };
-  const handleSubmit = async ({ rememberMe, ...values }: SignInForm, { setSubmitting }: FormikHelpers<SignInForm>) => {
+  const handleSubmit = async ({ rememberMe, ...values }: AuthType, { setSubmitting }: FormikHelpers<AuthType>) => {
     const { data, error }: { data?: UserResponse; error?: unknown } = await signIn(values);
     if (!error && data) {
       dispatch(setCredentials({ ...data }));

@@ -1,15 +1,23 @@
 import { FormikErrors } from "formik";
 
-export interface SignInForm {
+export interface AuthType {
   username: string;
   password: string;
   rememberMe?: boolean;
 }
 
-export interface SignUpForm extends SignInForm {
+export interface RegistrationType extends AuthType {
   email: string;
   isAdmin: boolean;
   picture: File | null;
+}
+
+export interface User extends AuthType {
+  email: string;
+  picture: string;
+  role: string;
+  __v: number;
+  _id: string;
 }
 
 export interface InputProps extends React.HTMLProps<HTMLInputElement> {
@@ -32,7 +40,7 @@ export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface ImageProps extends React.HTMLAttributes<HTMLDivElement> {
-  setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => Promise<void | FormikErrors<SignUpForm>>;
+  setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => Promise<void | FormikErrors<RegistrationType>>;
   image: File | null;
   imageName: string;
 }
@@ -45,13 +53,3 @@ export interface ErrorMessage {
 export interface UserResponse {
   token: null | string;
 }
-
-export type User = {
-  email: string;
-  password: string;
-  picture: string;
-  role: string;
-  username: string;
-  __v: number;
-  _id: string;
-};
