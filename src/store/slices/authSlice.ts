@@ -42,7 +42,14 @@ export const authApi = createApi({
       }),
       forceRefetch: () => true,
     }),
+    Users: builder.query<User[], void>({
+      query: () => ({
+        url: "users",
+        method: "GET",
+      }),
+      forceRefetch: () => true,
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useProfilesQuery } = authApi;
+export const { useSignUpMutation, useSignInMutation, useProfilesQuery, useUsersQuery } = authApi;
