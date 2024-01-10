@@ -15,7 +15,7 @@ describe("Sign in form testing", () => {
       </Wrapper>,
     );
 
-    await userEvent.type(screen.getByPlaceholderText("Username"), "Alex");
+    await userEvent.type(screen.getByPlaceholderText("Email"), "sahabenzar@gmail.com");
     await userEvent.type(screen.getByPlaceholderText("Password"), "12345");
     await userEvent.click(screen.getByText("Sign In"));
     expect(spySignIn).toHaveBeenCalled();
@@ -27,7 +27,7 @@ describe("Sign in form testing", () => {
       </Wrapper>,
     );
     await userEvent.click(screen.getByText("Sign In"));
-    expect(screen.getByText(ErrorMessages.UserNameEmpty)).toBeInTheDocument();
+    expect(screen.getByText(ErrorMessages.EmailEmpty)).toBeInTheDocument();
     expect(screen.getByText(ErrorMessages.PasswordEmpty)).toBeInTheDocument();
   });
   it("if password isn't correct", async () => {

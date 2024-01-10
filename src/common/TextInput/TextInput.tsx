@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TextInput.module.scss";
 import { Field, ErrorMessage } from "formik";
 import { InputProps } from "types";
-import { Typography } from "..";
+import { Typography } from "common";
 
 export const TextInput: React.FC<InputProps> = ({ isBlack = false, ...props }) => {
   return (

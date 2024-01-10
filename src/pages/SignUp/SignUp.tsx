@@ -2,7 +2,7 @@ import { Formik, FormikHelpers } from "formik";
 import { RegistrationType, UserResponse } from "types";
 import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
-import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "components/index";
+import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";

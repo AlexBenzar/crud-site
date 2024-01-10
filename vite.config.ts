@@ -11,6 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      common: "/src/common/",
       components: "/src/components/",
       scss: "/src/scss/",
       pages: "/src/pages/",

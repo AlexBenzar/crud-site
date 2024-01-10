@@ -6,10 +6,8 @@ import { useAppDispatch } from "store/hooks";
 import { logOut } from "store/slices/userSlice";
 import Cookies from "universal-cookie";
 import { useProfilesQuery } from "store/slices/authSlice";
-import Avatar from "img/svg/avatar.svg";
-import Profiles from "img/svg/profiles.svg";
-import Users from "img/svg/users.svg";
-import Dashboard from "img/svg/dashboard.svg";
+import { Avatar, Dashboard, Profiles, Users } from "img";
+import { Loader, Typography } from "common/index";
 
 export const Layout: React.FC = () => {
   const cookies = new Cookies();
@@ -25,7 +23,7 @@ export const Layout: React.FC = () => {
   }
 
   if (isLoading || isFetching) {
-    return "Loading...";
+    return <Loader />;
   }
   return data ? (
     <div className={styles.container}>
@@ -61,6 +59,6 @@ export const Layout: React.FC = () => {
       <Outlet />
     </div>
   ) : (
-    <>Error occur</>
+    <Typography variant="error-1">Error occur</Typography>
   );
 };

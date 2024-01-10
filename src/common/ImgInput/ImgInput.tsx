@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Avatar from "img/svg/avatar.svg";
 import styles from "./ImgInput.module.scss";
-import { Typography } from "..";
+import { Typography } from "common";
 import { ErrorMessage } from "formik";
 import { ImageProps } from "types/index";
 

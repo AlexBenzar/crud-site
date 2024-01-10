@@ -1,4 +1,4 @@
-import { Profiles, SignIn, SignUp } from "./pages";
+import { Profiles, SignIn, SignUp, Users } from "./pages";
 
 export const publicRoutes = [
   {
@@ -15,5 +15,17 @@ export const privateRoutes = [
   {
     path: "/profiles",
     Component: <Profiles />,
+  },
+  {
+    path: "/users",
+    Component: <Users />,
+  },
+  {
+    path: "/users/:id",
+    Component: <>User</>,
+  },
+  {
+    path: "/dashboard",
+    Component: <>Dashboard</>,
   },
 ];

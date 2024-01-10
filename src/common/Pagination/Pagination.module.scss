@@ -1,0 +1,16 @@
+@use "scss/variables";
+
+.pagination {
+  display: flex;
+  background-color: variables.$black;
+  padding: 10px 15px;
+  border-radius: 15px;
+  gap: 25px;
+  &__arrow {
+    cursor: pointer;
+    user-select: none;
+  }
+  &__number {
+    user-select: none;
+  }
+}
