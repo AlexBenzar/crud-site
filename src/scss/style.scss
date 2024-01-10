@@ -9,9 +9,25 @@
   line-height: normal;
 }
 
+.title-2 {
+  color: variables.$black;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .body-1 {
   color: variables.$text-white;
   font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.body-2 {
+  color: variables.$text-white;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

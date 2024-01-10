@@ -14,7 +14,7 @@ export const SignIn: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const initialValues: AuthType = {
-    username: "",
+    email: "",
     password: "",
     rememberMe: false,
   };
@@ -39,7 +39,7 @@ export const SignIn: React.FC = () => {
             <Typography variant="title-1" className={styles.signIn__h1}>
               Sign in
             </Typography>
-            <TextInput type="username" name="username" placeholder="Username" className={styles.signIn__input} />
+            <TextInput type="email" name="email" placeholder="Email" className={styles.signIn__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signIn__input} />
             <BigButton text={"Sign In"} isSubmitting={isSubmitting} className={styles.signIn__button} />
             <Checkbox text="Remember me" name="rememberMe" className={styles.signIn__checkbox} />
