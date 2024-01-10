@@ -1,5 +1,5 @@
 import styles from "./Users.module.scss";
-import { Pagination, Typography } from "common/index";
+import { Loader, Pagination, Typography } from "common/index";
 import { UserCard } from "components/index";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ export const Users: React.FC = () => {
   const [count] = useState(2);
 
   if (isLoading || isFetching) {
-    return "Loading...";
+    return <Loader />;
   }
   return data ? (
     <div className={styles.users}>
@@ -31,6 +31,6 @@ export const Users: React.FC = () => {
       <Pagination page={page} setPage={setPage} total={Math.ceil(data.length / count)} className={styles.users__pagination} />
     </div>
   ) : (
-    <>Error occur</>
+    <Typography variant="error-1">Error occur</Typography>
   );
 };

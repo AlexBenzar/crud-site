@@ -13,6 +13,7 @@ export interface RegistrationType extends AuthType {
 }
 
 export interface User extends AuthType {
+  username: string;
   picture: string;
   role: string;
   __v: number;
