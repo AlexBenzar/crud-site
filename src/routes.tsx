@@ -21,6 +21,10 @@ export const privateRoutes = [
     Component: <Users />,
   },
   {
+    path: "/users/:id",
+    Component: <>User</>,
+  },
+  {
     path: "/dashboard",
     Component: <>Dashboard</>,
   },

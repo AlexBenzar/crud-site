@@ -18,7 +18,7 @@ export const Users: React.FC = () => {
       <div className={styles.users__sort}></div>
       <div className={styles.users__cards}>
         {data.map((item) => (
-          <Link key={item._id} to={`users/${item._id}`} className={styles.users__card}>
+          <Link key={item._id} to={`/users/${item._id}`} className={styles.users__card}>
             <UserCard {...item} />
           </Link>
         ))}
