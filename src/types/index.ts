@@ -34,8 +34,10 @@ export interface FormInterface extends React.HTMLProps<HTMLFormElement> {
   children: React.ReactNode;
 }
 
+type Font = "title-1" | "title-2" | "body-1" | "body-2" | "error-1";
+
 export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
-  variant: "title-1" | "body-1" | "error-1";
+  variant: Font;
   children: React.ReactNode;
 }
 
