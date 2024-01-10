@@ -54,3 +54,9 @@ export interface ErrorMessage {
 export interface UserResponse {
   token: null | string;
 }
+
+export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {
+  total: number;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
