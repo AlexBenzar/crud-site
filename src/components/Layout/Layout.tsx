@@ -6,10 +6,7 @@ import { useAppDispatch } from "store/hooks";
 import { logOut } from "store/slices/userSlice";
 import Cookies from "universal-cookie";
 import { useProfilesQuery } from "store/slices/authSlice";
-import Avatar from "img/svg/avatar.svg";
-import Profiles from "img/svg/profiles.svg";
-import Users from "img/svg/users.svg";
-import Dashboard from "img/svg/dashboard.svg";
+import { Avatar, Dashboard, Profiles, Users } from "img";
 
 export const Layout: React.FC = () => {
   const cookies = new Cookies();

@@ -16,4 +16,12 @@ export const privateRoutes = [
     path: "/profiles",
     Component: <Profiles />,
   },
+  {
+    path: "/users",
+    Component: <>Users</>,
+  },
+  {
+    path: "/dashboard",
+    Component: <>Dashboard</>,
+  },
 ];

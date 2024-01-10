@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Checkbox.module.scss";
 import { Field } from "formik";
 import { InputProps } from "types";
-import { Typography } from "..";
+import { Typography } from "common";
 
 export const Checkbox: React.FC<InputProps> = ({ text = "", ...props }) => {
   return (

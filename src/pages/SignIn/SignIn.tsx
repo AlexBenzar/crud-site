@@ -3,7 +3,7 @@ import { Formik, FormikHelpers } from "formik";
 import { AuthType, UserResponse } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
-import { BigButton, Checkbox, CustomForm, TextInput, Typography } from "components/index";
+import { BigButton, Checkbox, CustomForm, TextInput, Typography } from "common/index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
