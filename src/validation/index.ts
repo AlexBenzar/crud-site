@@ -22,7 +22,7 @@ export const signUpValidation = Yup.object().shape({
 });
 
 export const signInValidation = Yup.object().shape({
-  username: Yup.string().required(ErrorMessages.UserNameEmpty),
+  email: Yup.string().email(ErrorMessages.EmailError).required(ErrorMessages.EmailEmpty),
   password: Yup.string()
     .min(4, ErrorMessages.PasswordError)
     .max(15, ErrorMessages.PasswordError)

@@ -25,7 +25,7 @@ describe("userSlice testing", () => {
   });
   describe("testing if user can sign in", () => {
     it("if sign in request to users database is fulfilled", async () => {
-      const user = { username: "Alex", password: "12345" };
+      const user = { email: "sahabenzar@gmail.com", password: "12345" };
       const { result } = renderHook(() => useSignInMutation(), { wrapper: Wrapper });
       await act(() => result.current[0](user));
       const { data, status } = result.current[1];
@@ -34,7 +34,7 @@ describe("userSlice testing", () => {
       expect(status).toBe("fulfilled");
     });
     it("if sign in request to users database is rejected", async () => {
-      const user = { username: "", password: "" };
+      const user = { email: "", password: "" };
       const { result } = renderHook(() => useSignInMutation(), { wrapper: Wrapper });
       await act(() => result.current[0](user));
       const { status } = result.current[1];

@@ -1,19 +1,18 @@
 import { FormikErrors } from "formik";
 
 export interface AuthType {
-  username: string;
+  email: string;
   password: string;
   rememberMe?: boolean;
 }
 
 export interface RegistrationType extends AuthType {
-  email: string;
+  username: string;
   isAdmin: boolean;
   picture: File | null;
 }
 
 export interface User extends AuthType {
-  email: string;
   picture: string;
   role: string;
   __v: number;

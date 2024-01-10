@@ -12,8 +12,8 @@ const users = [
 
 export const server = setupServer(
   http.post(URL + "signin", async ({ request }) => {
-    const { username, password } = (await request.json()) as AuthType;
-    if (username == "Alex" && password == "12345") {
+    const { email, password } = (await request.json()) as AuthType;
+    if (email == "sahabenzar@gmail.com" && password == "12345") {
       return HttpResponse.json({ token: "token" });
     }
     return HttpResponse.error();
