@@ -4,7 +4,7 @@ import { BigButtonType } from "types";
 
 export const BigButton: React.FC<BigButtonType> = ({ text = "", isSubmitting, ...props }) => {
   return (
-    <button type="submit" disabled={isSubmitting} className={`${props.className} ${styles.button}`}>
+    <button {...props} type="submit" disabled={isSubmitting} className={`${props.className} ${styles.button}`}>
       {text}
     </button>
   );

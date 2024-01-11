@@ -17,7 +17,7 @@ export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName
     };
   }
 
-  function ImageHandler(e: React.MouseEvent<HTMLAnchorElement>) {
+  function showAvatarHandler(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     if (imageRef.current) {
       imageRef.current.click();
@@ -27,7 +27,7 @@ export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName
   return (
     <div className={`${styles.image} ${props.className}`}>
       <img src={preview || Avatar} alt="avatar" />
-      <a href="#" onClick={ImageHandler}>
+      <a href="#" onClick={showAvatarHandler}>
         Choose picture
       </a>
       <input
