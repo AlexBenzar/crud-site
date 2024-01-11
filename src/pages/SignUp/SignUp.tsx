@@ -22,7 +22,7 @@ export const SignUp: React.FC = () => {
     picture: null,
     rememberMe: false,
   };
-  const [check, setCheck] = useState(false);
+  const [roleCheck, setRoleCheck] = useState(false);
   const handleSubmit = async (
     { rememberMe, ...values }: RegistrationType,
     { setSubmitting }: FormikHelpers<RegistrationType>,
@@ -40,8 +40,8 @@ export const SignUp: React.FC = () => {
   };
 
   function isAdmin(values: RegistrationType) {
-    values.role = values.role == "user" ? "admin" : "user";
-    setCheck(!check);
+    values.role = !roleCheck ? "admin" : "user";
+    setRoleCheck(!roleCheck);
   }
 
   return (
@@ -57,7 +57,7 @@ export const SignUp: React.FC = () => {
             <TextInput type="email" name="email" placeholder="Email" className={styles.signUp__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signUp__input} />
             <div className={styles.signUp__checkbox}>
-              <Checkbox name="role" text="Admin" checked={check} onChange={() => isAdmin(values)} />
+              <Checkbox name="role" text="Admin" checked={roleCheck} onChange={() => isAdmin(values)} />
               <Checkbox text="Remember me" name="rememberMe" />
             </div>
             <BigButton text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
