@@ -1,19 +1,19 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { publicRoutes, privateRoutes } from "./routes";
+import { publicRoutes, privateUserRoutes, privateAdminRoutes } from "./routes";
 import "scss/style.scss";
 import { useAppSelector } from "store/hooks";
 import { Layout } from "./components";
 
 function App() {
   const token = !!useAppSelector((state) => state.user.token);
-  const role = useAppSelector((state) => state.user);
+  const role = useAppSelector((state) => state.user.role);
   console.log(role);
   return token ? (
     <Routes>
       <Route element={<Layout />}>
-        {privateRoutes.map(({ path, Component }) => (
-          <Route key={path} path={path} element={Component} />
-        ))}
+        {role == "user"
+          ? privateUserRoutes.map(({ path, Component }) => <Route key={path} path={path} element={Component} />)
+          : privateAdminRoutes.map(({ path, Component }) => <Route key={path} path={path} element={Component} />)}
         <Route path="*" element={<Navigate to="/profiles" />} />
       </Route>
     </Routes>
