@@ -18,12 +18,12 @@ export const authApi = createApi({
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
     signUp: builder.mutation<UserResponse, RegistrationType>({
-      query: ({ username, email, password, isAdmin, picture }) => {
+      query: ({ username, email, password, role, picture }) => {
         const body = new FormData();
         body.append("username", username);
         body.append("email", email);
         body.append("password", password);
-        body.append("isAdmin", JSON.stringify(isAdmin));
+        body.append("role", role);
         picture ? body.append("picture", picture, picture.name) : body.append("picture", JSON.stringify(picture));
         return { url: "signup", method: "POST", body, formData: true };
       },

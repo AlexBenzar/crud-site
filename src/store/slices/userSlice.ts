@@ -6,6 +6,7 @@ const cookies = new Cookies();
 
 const initialState: UserResponse = cookies.get("token") ?? {
   token: null,
+  role: null,
 };
 
 const userSlice = createSlice({
@@ -13,12 +14,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action: PayloadAction<UserResponse>) => {
-      const { token } = action.payload;
+      const { token, role } = action.payload;
 
       state.token = token;
+      state.role = role;
     },
     logOut: (state) => {
       state.token = null;
+      state.role = null;
     },
   },
 });

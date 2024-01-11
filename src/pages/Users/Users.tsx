@@ -8,7 +8,7 @@ import { useUsersQuery } from "store/slices/authSlice";
 export const Users: React.FC = () => {
   const { data, isLoading, isFetching } = useUsersQuery();
   const [page, setPage] = useState(1);
-  const [count] = useState(2);
+  const [count] = useState(8);
 
   if (isLoading || isFetching) {
     return <Loader />;

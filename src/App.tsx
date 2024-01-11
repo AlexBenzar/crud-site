@@ -6,7 +6,8 @@ import { Layout } from "./components";
 
 function App() {
   const token = !!useAppSelector((state) => state.user.token);
-
+  const role = useAppSelector((state) => state.user);
+  console.log(role);
   return token ? (
     <Routes>
       <Route element={<Layout />}>
