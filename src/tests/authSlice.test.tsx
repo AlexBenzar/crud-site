@@ -6,7 +6,7 @@ import { Wrapper } from "./Wrapper";
 describe("userSlice testing", () => {
   describe("testing if user can sign up", () => {
     it("if sign up request to users database is fulfilled", async () => {
-      const user = { email: "alex@gmail.com", isAdmin: false, password: "12345", picture: null, username: "Alex" };
+      const user = { email: "alex@gmail.com", role: "user", password: "12345", picture: null, username: "Alex" };
       const { result } = renderHook(() => useSignUpMutation(), { wrapper: Wrapper });
       await act(() => result.current[0](user));
       const { data, status } = result.current[1];
@@ -15,7 +15,7 @@ describe("userSlice testing", () => {
       expect(status).toBe("fulfilled");
     });
     it("if sign up request to users database is rejected", async () => {
-      const user = { email: "alex@gmai", isAdmin: false, password: "123", picture: null, username: "" };
+      const user = { email: "alex@gmai", role: "user", password: "123", picture: null, username: "" };
       const { result } = renderHook(() => useSignUpMutation(), { wrapper: Wrapper });
       await act(() => result.current[0](user));
       const { status } = result.current[1];

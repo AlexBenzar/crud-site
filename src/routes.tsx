@@ -11,7 +11,14 @@ export const publicRoutes = [
   },
 ];
 
-export const privateRoutes = [
+export const privateUserRoutes = [
+  {
+    path: "/profiles",
+    Component: <Profiles />,
+  },
+];
+
+export const privateAdminRoutes = [
   {
     path: "/profiles",
     Component: <Profiles />,

@@ -8,6 +8,7 @@ import { useSignUpMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
 import { setCredentials } from "store/slices/userSlice";
 import Cookies from "universal-cookie";
+import { useState } from "react";
 
 export const SignUp: React.FC = () => {
   const [signUp, { error }] = useSignUpMutation();
@@ -17,17 +18,18 @@ export const SignUp: React.FC = () => {
     username: "",
     email: "",
     password: "",
-    isAdmin: false,
+    role: "user",
     picture: null,
     rememberMe: false,
   };
+  const [isAdmin, setIsAdmin] = useState(false);
   const handleSubmit = async (
     { rememberMe, ...values }: RegistrationType,
     { setSubmitting }: FormikHelpers<RegistrationType>,
   ) => {
-    const { data, error }: { data?: UserResponse; error?: unknown } = await signUp(values);
+    const { data, error }: { data?: UserResponse; error?: unknown } = await signUp({ ...values });
     if (!error && data) {
-      dispatch(setCredentials({ ...data }));
+      dispatch(setCredentials(data));
       if (rememberMe) {
         const cookies = new Cookies();
         cookies.set("token", data, { expires: new Date(Date.now() + 86400000) });
@@ -36,6 +38,11 @@ export const SignUp: React.FC = () => {
       navigate("/");
     }
   };
+
+  function changeUserRole(values: RegistrationType) {
+    values.role = !isAdmin ? "admin" : "user";
+    setIsAdmin(!isAdmin);
+  }
 
   return (
     <div className={styles.signUp}>
@@ -50,7 +57,7 @@ export const SignUp: React.FC = () => {
             <TextInput type="email" name="email" placeholder="Email" className={styles.signUp__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signUp__input} />
             <div className={styles.signUp__checkbox}>
-              <Checkbox name="isAdmin" text="Admin" />
+              <Checkbox name="role" text="Admin" checked={isAdmin} onChange={() => changeUserRole(values)} />
               <Checkbox text="Remember me" name="rememberMe" />
             </div>
             <BigButton text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
