@@ -1,7 +1,10 @@
+import styles from "./Profile.module.scss";
+import { ProfileList } from "components/index";
+
 export const Profiles: React.FC = () => {
   return (
-    <>
-      <h1>Your Profiles</h1>
-    </>
+    <div className={styles.profile}>
+      <ProfileList />
+    </div>
   );
 };

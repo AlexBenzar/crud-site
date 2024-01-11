@@ -9,7 +9,7 @@
   background: url("img/bg/users_bg.png") no-repeat 100% 100%;
   background-size: cover;
   &__title {
-    margin-bottom: 20px;
+    margin: 40px 0 20px;
     color: variables.$black;
   }
   &__sort {
@@ -23,6 +23,10 @@
     padding: 0 35px;
     row-gap: 24px;
     margin-bottom: 20px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   &__card {
     flex: 0 1 calc(25% - 30px);

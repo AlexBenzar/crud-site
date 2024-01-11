@@ -35,9 +35,9 @@ export const authApi = createApi({
         body,
       }),
     }),
-    Profiles: builder.query<User, void>({
-      query: () => ({
-        url: "user",
+    Profiles: builder.query<User, string>({
+      query: (id) => ({
+        url: `user/${id}`,
         method: "GET",
       }),
       forceRefetch: () => true,

@@ -1,0 +1,40 @@
+@use "scss/variables";
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 25px;
+  background: #242420;
+  margin: 50px 0 65px;
+  padding: 25px 70px 55px;
+  &__img {
+    margin-bottom: 30px;
+    text-align: center;
+    img {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  &__name {
+    margin-bottom: 25px;
+  }
+  &__email {
+    margin-bottom: 30px;
+    text-decoration: underline;
+  }
+  &__role {
+    margin-bottom: 50px;
+    color: variables.$red !important;
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  &__button {
+    background-color: variables.$green;
+  }
+}

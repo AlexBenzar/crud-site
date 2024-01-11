@@ -10,3 +10,9 @@
   cursor: pointer;
   border: 0;
 }
+
+.black {
+  border-radius: 15px;
+  color: variables.$black;
+  padding: 15px 80px;
+}

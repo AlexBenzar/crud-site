@@ -27,7 +27,8 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
 
 export interface BigButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
+  isBlack?: boolean;
 }
 
 export interface FormInterface extends React.HTMLProps<HTMLFormElement> {
