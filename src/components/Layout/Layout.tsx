@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { data, isLoading, isFetching } = useProfilesQuery();
+  const { data, isLoading, isFetching } = useProfilesQuery("");
   function logOutHandler() {
     dispatch(logOut());
     if (cookies.get("token")) {
