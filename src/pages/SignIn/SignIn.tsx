@@ -21,7 +21,7 @@ export const SignIn: React.FC = () => {
   const handleSubmit = async ({ rememberMe, ...values }: AuthType, { setSubmitting }: FormikHelpers<AuthType>) => {
     const { data, error }: { data?: UserResponse; error?: unknown } = await signIn(values);
     if (!error && data) {
-      dispatch(setCredentials({ ...data }));
+      dispatch(setCredentials(data));
       if (rememberMe) {
         const cookies = new Cookies();
         cookies.set("token", data, { expires: new Date(Date.now() + 86400000) });

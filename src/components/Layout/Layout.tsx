@@ -39,7 +39,7 @@ export const Layout: React.FC = () => {
             <img src={Profiles} />
             Profiles
           </NavLink>
-          {data.role == "admin" && (
+          {data.role === "admin" && (
             <>
               <NavLink to="/users">
                 <img src={Users} />

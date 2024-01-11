@@ -8,7 +8,7 @@ export interface AuthType {
 
 export interface RegistrationType extends AuthType {
   username: string;
-  isAdmin: boolean;
+  role: string;
   picture: File | null;
 }
 
@@ -54,6 +54,7 @@ export interface ErrorMessage {
 
 export interface UserResponse {
   token: null | string;
+  role: null | string;
 }
 
 export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {

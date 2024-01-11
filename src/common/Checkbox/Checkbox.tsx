@@ -7,7 +7,7 @@ import { Typography } from "common";
 export const Checkbox: React.FC<InputProps> = ({ text = "", ...props }) => {
   return (
     <label className={`${styles.label} ${props.className}`}>
-      <Field data-testid="checkbox" type="checkbox" name={props.name} className={styles.input} />
+      <Field {...props} data-testid="checkbox" type="checkbox" name={props.name} className={styles.input} />
       <Typography variant="body-1">{text}</Typography>
     </label>
   );

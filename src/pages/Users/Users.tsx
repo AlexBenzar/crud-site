@@ -7,8 +7,8 @@ import { useUsersQuery } from "store/slices/authSlice";
 
 export const Users: React.FC = () => {
   const { data, isLoading, isFetching } = useUsersQuery();
-  const [page, setPage] = useState(1);
-  const [count] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersAmount] = useState(8);
 
   if (isLoading || isFetching) {
     return <Loader />;
@@ -21,14 +21,19 @@ export const Users: React.FC = () => {
       <div className={styles.users__sort}></div>
       <div className={styles.users__cards}>
         {data
-          .filter((_item, index) => index >= page * count - count && index < page * count)
+          .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
           .map((item) => (
             <Link key={item._id} to={`/users/${item._id}`} className={styles.users__card}>
               <UserCard {...item} />
             </Link>
           ))}
       </div>
-      <Pagination page={page} setPage={setPage} total={Math.ceil(data.length / count)} className={styles.users__pagination} />
+      <Pagination
+        page={currentPage}
+        setPage={setCurrentPage}
+        total={Math.ceil(data.length / usersAmount)}
+        className={styles.users__pagination}
+      />
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>
