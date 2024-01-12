@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormikErrors } from "formik";
 
 export interface AuthType {
@@ -67,4 +68,5 @@ export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {
 export interface UserFormType {
   isOpen: React.Dispatch<React.SetStateAction<boolean>>;
   data: User;
+  refetch: any;
 }

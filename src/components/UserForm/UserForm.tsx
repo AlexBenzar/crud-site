@@ -4,8 +4,10 @@ import { Button, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "c
 import { RegistrationType, UserFormType } from "types/index";
 import { EditUserValidation } from "validation/index";
 import { useState } from "react";
+import { usePatchUserDataMutation } from "store/slices/authSlice";
 
-export const UserForm: React.FC<UserFormType> = ({ data, isOpen }) => {
+export const UserForm: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
+  const [editUser, { error }] = usePatchUserDataMutation();
   const initialValues: RegistrationType = {
     username: data.username,
     email: data.email,
@@ -13,10 +15,14 @@ export const UserForm: React.FC<UserFormType> = ({ data, isOpen }) => {
     role: data.role,
     picture: null,
   };
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(data.role == "admin" ? true : false);
   const handleSubmit = async ({ ...values }: RegistrationType, { setSubmitting }: FormikHelpers<RegistrationType>) => {
-    console.log(values);
-    setSubmitting(false);
+    const { error }: { data?: { message: string }; error?: unknown } = await editUser({ id: data._id, ...values });
+    if (!error) {
+      setSubmitting(false);
+      isOpen(false);
+      refetch();
+    }
   };
   function changeUserRole(values: RegistrationType) {
     values.role = !isAdmin ? "admin" : "user";
@@ -59,6 +65,7 @@ export const UserForm: React.FC<UserFormType> = ({ data, isOpen }) => {
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.edit__button} />
               <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />
             </div>
+            {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
           </CustomForm>
         )}
       </Formik>

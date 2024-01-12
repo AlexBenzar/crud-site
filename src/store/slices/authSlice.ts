@@ -35,13 +35,6 @@ export const authApi = createApi({
         body,
       }),
     }),
-    Profiles: builder.query<User, string>({
-      query: (id) => ({
-        url: `user/${id}`,
-        method: "GET",
-      }),
-      forceRefetch: () => true,
-    }),
     Users: builder.query<User[], void>({
       query: () => ({
         url: "users",
@@ -49,7 +42,23 @@ export const authApi = createApi({
       }),
       forceRefetch: () => true,
     }),
+    GetUserData: builder.query<User, string>({
+      query: (id) => ({
+        url: `user/${id}`,
+        method: "GET",
+      }),
+      forceRefetch: () => true,
+    }),
+    PatchUserData: builder.mutation<{ message: string }, RegistrationType & { id: string }>({
+      query: ({ id, email, username, picture, role }) => {
+        const body: { email: string; username: string; role: string; picture?: null | File } = { email, username, role };
+        if (picture) {
+          body.picture = picture;
+        }
+        return { url: `user/${id}`, method: "PATCH", body };
+      },
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useProfilesQuery, useUsersQuery } = authApi;
+export const { useSignUpMutation, useSignInMutation, useGetUserDataQuery, useUsersQuery, usePatchUserDataMutation } = authApi;

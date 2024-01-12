@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "store/hooks";
 import { logOut } from "store/slices/userSlice";
 import Cookies from "universal-cookie";
-import { useProfilesQuery } from "store/slices/authSlice";
+import { useGetUserDataQuery } from "store/slices/authSlice";
 import { Avatar, Dashboard, Profiles, Users } from "img";
 import { Loader, Typography } from "common/index";
 
@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { data, isLoading, isFetching } = useProfilesQuery("");
+  const { data, isLoading, isFetching } = useGetUserDataQuery("");
   function logOutHandler() {
     dispatch(logOut());
     if (cookies.get("token")) {
