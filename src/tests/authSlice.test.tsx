@@ -44,7 +44,7 @@ describe("userSlice testing", () => {
   });
   describe("testing if user can get his data", () => {
     it("must return fulfilled", async () => {
-      const { result } = renderHook(() => useProfilesQuery(), { wrapper: Wrapper });
+      const { result } = renderHook(() => useProfilesQuery(""), { wrapper: Wrapper });
       await waitFor(() => {
         expect(result.current.status).toBe("fulfilled");
         expect(result.current.data).toStrictEqual({ user: "Alex" });

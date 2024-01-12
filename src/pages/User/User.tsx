@@ -1,5 +1,5 @@
 import styles from "./User.module.scss";
-import { ProfileList, UserInfo } from "components/index";
+import { ProfileList, UserInfo } from "modules/index";
 
 export const User: React.FC = () => {
   return (

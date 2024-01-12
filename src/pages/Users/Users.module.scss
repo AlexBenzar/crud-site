@@ -3,37 +3,6 @@
 .users {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background: url("img/bg/users_bg.png") no-repeat 100% 100%;
   background-size: cover;
-  &__title {
-    margin: 40px 0 20px;
-    color: variables.$black;
-  }
-  &__sort {
-  }
-  &__cards {
-    flex: 1 1 auto;
-    align-self: stretch;
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    padding: 0 35px;
-    row-gap: 24px;
-    margin-bottom: 20px;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  &__card {
-    flex: 0 1 calc(25% - 30px);
-    padding: 0 15px;
-    text-decoration: none;
-  }
-  &__pagination {
-    margin-bottom: 30px;
-  }
 }

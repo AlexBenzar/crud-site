@@ -1,6 +1,6 @@
 import { PaginationType } from "types/index";
-import { Typography } from "..";
 import styles from "./Pagination.module.scss";
+import { Typography } from "common/index";
 
 export const Pagination: React.FC<PaginationType> = ({ page, setPage, total, ...props }) => {
   function goToPrevUsers() {

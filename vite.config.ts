@@ -13,6 +13,7 @@ export default defineConfig({
     alias: {
       common: "/src/common/",
       components: "/src/components/",
+      modules: "/src/modules/",
       scss: "/src/scss/",
       pages: "/src/pages/",
       img: "/src/img/",

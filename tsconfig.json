@@ -24,6 +24,7 @@
       "scss/*": ["scss/*"],
       "common/*": ["common/*"],
       "components/*": ["components/*"],
+      "modules/*": ["modules/*"],
       "pages/*": ["pages/*"],
       "img/*": ["img/*"],
       "types/*": ["types/*"],
