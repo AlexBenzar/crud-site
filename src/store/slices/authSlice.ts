@@ -58,7 +58,20 @@ export const authApi = createApi({
         return { url: `user/${id}`, method: "PATCH", body };
       },
     }),
+    DeleteUserData: builder.mutation<{ message: string }, string>({
+      query: (id) => ({
+        url: `user/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useGetUserDataQuery, useUsersQuery, usePatchUserDataMutation } = authApi;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetUserDataQuery,
+  useUsersQuery,
+  usePatchUserDataMutation,
+  useDeleteUserDataMutation,
+} = authApi;

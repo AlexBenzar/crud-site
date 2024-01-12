@@ -3,12 +3,13 @@ import { Avatar } from "img";
 import { Typography, Button, Loader } from "common/index";
 import styles from "./UserInfo.module.scss";
 import { useGetUserDataQuery } from "store/slices/authSlice";
-import { UserForm } from "components/index";
+import { UserForm, UserDelete } from "components/index";
 import { useState } from "react";
 
 export const UserInfo: React.FC = () => {
   const { id } = useParams();
   const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
   const { data, isLoading, isFetching, refetch } = useGetUserDataQuery(id as string);
   if (isLoading || isFetching) {
     return <Loader />;
@@ -29,9 +30,10 @@ export const UserInfo: React.FC = () => {
       </Typography>
       <div className={styles.user__buttons}>
         <Button text="Edit" isBlack={true} className={styles.user__button} onClick={() => setIsEdit(true)} />
-        <Button text="Delete" isBlack={true} />
+        <Button text="Delete" isBlack={true} onClick={() => setIsDelete(true)} />
       </div>
       {isEdit && <UserForm data={data} isOpen={setIsEdit} refetch={refetch} />}
+      {isDelete && <UserDelete data={data} isOpen={setIsDelete} refetch={refetch} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>
