@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom";
 import { Avatar } from "img";
-import { Typography, BigButton, Loader } from "common/index";
+import { Typography, Button, Loader } from "common/index";
 import styles from "./UserInfo.module.scss";
-import { useProfilesQuery } from "store/slices/authSlice";
+import { useGetUserDataQuery } from "store/slices/authSlice";
+import { UserForm } from "components/index";
+import { useState } from "react";
 
 export const UserInfo: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading, isFetching } = useProfilesQuery(id as string);
+  const [isEdit, setIsEdit] = useState(false);
+  const { data, isLoading, isFetching, refetch } = useGetUserDataQuery(id as string);
   if (isLoading || isFetching) {
     return <Loader />;
   }
@@ -25,9 +28,10 @@ export const UserInfo: React.FC = () => {
         {data.role}
       </Typography>
       <div className={styles.user__buttons}>
-        <BigButton text="Edit" isBlack={true} className={styles.user__button} />
-        <BigButton text="Delete" isBlack={true} />
+        <Button text="Edit" isBlack={true} className={styles.user__button} onClick={() => setIsEdit(true)} />
+        <Button text="Delete" isBlack={true} />
       </div>
+      {isEdit && <UserForm data={data} isOpen={setIsEdit} refetch={refetch} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

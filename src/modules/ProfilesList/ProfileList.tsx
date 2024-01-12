@@ -1,6 +1,6 @@
+import { ProfileCard } from "components/index";
 import styles from "./ProfileList.module.scss";
 import { Typography } from "common/index";
-import { ProfileCard } from "..";
 
 export const ProfileList: React.FC = () => {
   return (

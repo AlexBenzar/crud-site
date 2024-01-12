@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { publicRoutes, privateUserRoutes, privateAdminRoutes } from "./routes";
 import "scss/style.scss";
 import { useAppSelector } from "store/hooks";
-import { Layout } from "./components";
+import { Layout } from "./modules";
 
 function App() {
   const token = !!useAppSelector((state) => state.user.token);

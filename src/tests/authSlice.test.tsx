@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
-import { useSignInMutation, useSignUpMutation, useProfilesQuery, useUsersQuery } from "store/slices/authSlice";
+import { useSignInMutation, useSignUpMutation, useGetUserDataQuery, useUsersQuery } from "store/slices/authSlice";
 import { Wrapper } from "./Wrapper";
 
 describe("userSlice testing", () => {
@@ -44,7 +44,7 @@ describe("userSlice testing", () => {
   });
   describe("testing if user can get his data", () => {
     it("must return fulfilled", async () => {
-      const { result } = renderHook(() => useProfilesQuery(), { wrapper: Wrapper });
+      const { result } = renderHook(() => useGetUserDataQuery(""), { wrapper: Wrapper });
       await waitFor(() => {
         expect(result.current.status).toBe("fulfilled");
         expect(result.current.data).toStrictEqual({ user: "Alex" });

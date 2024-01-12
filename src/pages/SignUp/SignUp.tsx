@@ -2,7 +2,7 @@ import { Formik, FormikHelpers } from "formik";
 import { RegistrationType, UserResponse } from "types";
 import styles from "./SignUp.module.scss";
 import { signUpValidation } from "validation";
-import { BigButton, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
+import { Button, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
@@ -60,7 +60,7 @@ export const SignUp: React.FC = () => {
               <Checkbox name="role" text="Admin" checked={isAdmin} onChange={() => changeUserRole(values)} />
               <Checkbox text="Remember me" name="rememberMe" />
             </div>
-            <BigButton text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
+            <Button text={"Sign Up"} isSubmitting={isSubmitting} className={styles.signUp__button} />
             <Typography variant="body-1" className={styles.signUp__text}>
               Have an account? <Link to="/signIn">Sign in</Link>
             </Typography>
