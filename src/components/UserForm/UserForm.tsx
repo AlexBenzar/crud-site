@@ -1,16 +1,16 @@
 import { Formik, FormikHelpers } from "formik";
 import styles from "./UserForm.module.scss";
 import { Button, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
-import { RegistrationType } from "types/index";
+import { RegistrationType, UserFormType } from "types/index";
 import { EditUserValidation } from "validation/index";
 import { useState } from "react";
 
-export const UserForm: React.FC = () => {
+export const UserForm: React.FC<UserFormType> = ({ data, isOpen }) => {
   const initialValues: RegistrationType = {
-    username: "john_duke34553",
-    email: "john_duke34553@gmail.com",
+    username: data.username,
+    email: data.email,
     password: "",
-    role: "user",
+    role: data.role,
     picture: null,
   };
   const [isAdmin, setIsAdmin] = useState(false);
@@ -23,10 +23,10 @@ export const UserForm: React.FC = () => {
     setIsAdmin(!isAdmin);
   }
   return (
-    <div className={styles.edit}>
+    <div className={styles.edit} onClick={() => isOpen(false)}>
       <Formik initialValues={initialValues} validationSchema={EditUserValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit, setFieldValue, values }) => (
-          <CustomForm onSubmit={handleSubmit} className={styles.edit__form}>
+          <CustomForm onSubmit={handleSubmit} className={styles.edit__form} onClick={(e) => e.stopPropagation()}>
             <Typography variant="title-3" className={styles.edit__title}>
               Edit
             </Typography>
@@ -57,7 +57,7 @@ export const UserForm: React.FC = () => {
             </div>
             <div className={styles.edit__buttons}>
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.edit__button} />
-              <Button text="Close" isBlack={true} />
+              <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />
             </div>
           </CustomForm>
         )}

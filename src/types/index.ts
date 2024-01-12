@@ -63,3 +63,8 @@ export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export interface UserFormType {
+  isOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  data: User;
+}

@@ -4,9 +4,11 @@ import { Typography, Button, Loader } from "common/index";
 import styles from "./UserInfo.module.scss";
 import { useProfilesQuery } from "store/slices/authSlice";
 import { UserForm } from "components/index";
+import { useState } from "react";
 
 export const UserInfo: React.FC = () => {
   const { id } = useParams();
+  const [isEdit, setIsEdit] = useState(false);
   const { data, isLoading, isFetching } = useProfilesQuery(id as string);
   if (isLoading || isFetching) {
     return <Loader />;
@@ -26,10 +28,10 @@ export const UserInfo: React.FC = () => {
         {data.role}
       </Typography>
       <div className={styles.user__buttons}>
-        <Button text="Edit" isBlack={true} className={styles.user__button} />
+        <Button text="Edit" isBlack={true} className={styles.user__button} onClick={() => setIsEdit(true)} />
         <Button text="Delete" isBlack={true} />
       </div>
-      <UserForm />
+      {isEdit && <UserForm data={data} isOpen={setIsEdit} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>
