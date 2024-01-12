@@ -25,7 +25,7 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   text?: string;
 }
 
-export interface BigButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   isSubmitting?: boolean;
   isBlack?: boolean;
@@ -35,7 +35,7 @@ export interface FormInterface extends React.HTMLProps<HTMLFormElement> {
   children: React.ReactNode;
 }
 
-type Font = "title-1" | "title-2" | "body-1" | "body-2" | "error-1";
+type Font = "title-1" | "title-2" | "title-3" | "body-1" | "body-2" | "error-1";
 
 export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
   variant: Font;

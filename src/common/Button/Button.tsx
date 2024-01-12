@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Button.module.scss";
-import { BigButtonType } from "types";
+import { ButtonType } from "types";
 
-export const BigButton: React.FC<BigButtonType> = ({ text = "", isBlack = false, isSubmitting, ...props }) => {
+export const Button: React.FC<ButtonType> = ({ text = "", isBlack = false, isSubmitting, ...props }) => {
   return (
     <button
       {...props}

@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Avatar } from "img";
-import { Typography, BigButton, Loader } from "common/index";
+import { Typography, Button, Loader } from "common/index";
 import styles from "./UserInfo.module.scss";
 import { useProfilesQuery } from "store/slices/authSlice";
+import { UserForm } from "components/index";
 
 export const UserInfo: React.FC = () => {
   const { id } = useParams();
@@ -25,9 +26,10 @@ export const UserInfo: React.FC = () => {
         {data.role}
       </Typography>
       <div className={styles.user__buttons}>
-        <BigButton text="Edit" isBlack={true} className={styles.user__button} />
-        <BigButton text="Delete" isBlack={true} />
+        <Button text="Edit" isBlack={true} className={styles.user__button} />
+        <Button text="Delete" isBlack={true} />
       </div>
+      <UserForm />
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

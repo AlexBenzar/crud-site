@@ -3,7 +3,7 @@ import { Formik, FormikHelpers } from "formik";
 import { AuthType, UserResponse } from "types";
 import styles from "./SignIn.module.scss";
 import { signInValidation } from "validation";
-import { BigButton, Checkbox, CustomForm, TextInput, Typography } from "common/index";
+import { Button, Checkbox, CustomForm, TextInput, Typography } from "common/index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignInMutation } from "store/slices/authSlice";
 import { useAppDispatch } from "store/hooks";
@@ -41,7 +41,7 @@ export const SignIn: React.FC = () => {
             </Typography>
             <TextInput type="email" name="email" placeholder="Email" className={styles.signIn__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signIn__input} />
-            <BigButton text={"Sign In"} isSubmitting={isSubmitting} className={styles.signIn__button} />
+            <Button text={"Sign In"} isSubmitting={isSubmitting} className={styles.signIn__button} />
             <Checkbox text="Remember me" name="rememberMe" className={styles.signIn__checkbox} />
             <Typography variant="body-1" className={styles.signUp__text}>
               Have an account? <Link to="/signUp">Sign up</Link>
