@@ -70,3 +70,13 @@ export interface UserFormType {
   data: User;
   refetch: any;
 }
+
+export interface ProfileType {
+  _id: string;
+  full_name: string;
+  gender: string;
+  birthdate: Date;
+  city: string;
+  user: string;
+  __v: number;
+}

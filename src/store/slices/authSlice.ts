@@ -7,7 +7,7 @@ export const authApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${URL}api/`,
-    credentials: "same-origin",
+    credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
       if (token) {
