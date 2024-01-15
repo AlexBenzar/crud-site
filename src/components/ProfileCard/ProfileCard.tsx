@@ -1,10 +1,13 @@
 import styles from "./ProfileCard.module.scss";
 import { Typography } from "common/index";
 import { Avatar } from "img";
+import { ModifyCard } from "./ModifyCard";
+import { useState } from "react";
 
 export const ProfileCard: React.FC = () => {
+  const [isHover, setIsHover] = useState(false);
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onMouseOver={() => setIsHover(true)} onMouseOut={() => setIsHover(false)}>
       <div className={styles.card__main}>
         <div className={styles.card__img}>
           <img src={Avatar} alt="Avatar" />
@@ -37,6 +40,7 @@ export const ProfileCard: React.FC = () => {
           <Typography variant="body-2">0973468932</Typography>
         </div>
       </div>
+      <ModifyCard isHover={isHover} />
     </div>
   );
 };
