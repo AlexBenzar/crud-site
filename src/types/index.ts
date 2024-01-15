@@ -73,6 +73,7 @@ export interface UserFormType {
 
 export interface ProfileType {
   _id: string;
+  photo: string;
   full_name: string;
   gender: string;
   birthdate: Date;

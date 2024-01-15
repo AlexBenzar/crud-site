@@ -5,7 +5,7 @@ import { ModifyCard } from "./ModifyCard";
 import { useState } from "react";
 import { ProfileType } from "types/index";
 
-export const ProfileCard: React.FC<ProfileType> = ({ birthdate, city, full_name, gender }) => {
+export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender }) => {
   const [isHover, setIsHover] = useState(false);
   const info = [
     ["gender", gender],
@@ -16,7 +16,7 @@ export const ProfileCard: React.FC<ProfileType> = ({ birthdate, city, full_name,
     <div className={styles.card} onMouseOver={() => setIsHover(true)} onMouseOut={() => setIsHover(false)}>
       <div className={styles.card__main}>
         <div className={styles.card__img}>
-          <img src={Avatar} alt="Avatar" />
+          <img src={photo ?? Avatar} alt="Avatar" />
         </div>
         <div className={styles.card__name}>{full_name}</div>
       </div>
