@@ -1,7 +1,7 @@
 import { ProfileCard } from "components/index";
 import styles from "./ProfileList.module.scss";
-import { ProfileIcon } from "img";
 import { Typography } from "common/index";
+import { AddNewProfile } from "components/AddNewProfile/AddNewProfile";
 
 export const ProfileList: React.FC = () => {
   return (
@@ -14,12 +14,7 @@ export const ProfileList: React.FC = () => {
           <ProfileCard />
         </div>
         <div className={styles.profile__item}>
-          <div className={styles.profile__create}>
-            <div className="profile__img">
-              <img src={ProfileIcon} alt="Create new profile" />
-            </div>
-            <Typography variant="body-2">Create new profile</Typography>
-          </div>
+          <AddNewProfile />
         </div>
       </div>
     </div>
