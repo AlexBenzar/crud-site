@@ -75,7 +75,7 @@ export interface ProfileType {
   _id: string;
   full_name: string;
   gender: string;
-  birthdate: string;
+  birthdate: Date;
   city: string;
   user: string;
   __v: number;

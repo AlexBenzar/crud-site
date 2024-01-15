@@ -6,7 +6,7 @@ import { ErrorMessage, ProfileType } from "types/index";
 export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${URL}/profiles`,
+    baseUrl: `${URL}profiles/`,
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
@@ -17,9 +17,9 @@ export const profileApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
-    getProfiles: builder.query<ProfileType, string>({
+    getProfiles: builder.query<ProfileType[], string>({
       query: (id) => ({
-        url: `profile${id}`,
+        url: `profile/${id}`,
         method: "GET",
       }),
       forceRefetch: () => true,
