@@ -85,3 +85,10 @@ export interface ProfileType {
   user: string;
   __v: number;
 }
+
+export interface ProfileFormType {
+  isOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  data?: User;
+  id?: string;
+  refetch: any;
+}

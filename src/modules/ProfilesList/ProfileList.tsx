@@ -4,10 +4,12 @@ import { Loader, Typography } from "common/index";
 import { useGetProfilesQuery } from "store/slices/profileSlice";
 import { ProfileType } from "types/index";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export const ProfileList: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading, isFetching } = useGetProfilesQuery(id ?? "");
+  const { data, isLoading, isFetching, refetch } = useGetProfilesQuery(id ?? "");
+  const [isCreate, setIsCreate] = useState(false);
 
   if (isLoading || isFetching) {
     return <Loader />;
@@ -25,10 +27,10 @@ export const ProfileList: React.FC = () => {
           </div>
         ))}
         <div className={styles.profile__item}>
-          <AddNewProfile />
+          <AddNewProfile onClick={() => setIsCreate(true)} />
         </div>
       </div>
-      <ProfileForm />
+      {isCreate && <ProfileForm isOpen={setIsCreate} refetch={refetch} id={id} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

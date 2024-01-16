@@ -14,5 +14,9 @@
     background: rgba(variables.$black, $alpha: 0.92);
     border: 0;
     outline: none;
+    appearance: none;
+    background-image: url("img/svg/arrow.svg");
+    background-position: center right 20px;
+    background-repeat: no-repeat;
   }
 }

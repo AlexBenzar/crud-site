@@ -18,5 +18,9 @@
   .black {
     color: variables.$text-white;
     background: rgba(variables.$black, $alpha: 0.92);
+    &:-webkit-autofill {
+      -webkit-text-fill-color: variables.$text-white;
+      -webkit-box-shadow: 0 0 0 50px rgba(variables.$black, $alpha: 0.92) inset;
+    }
   }
 }

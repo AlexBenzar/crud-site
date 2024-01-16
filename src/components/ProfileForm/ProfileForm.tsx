@@ -1,11 +1,11 @@
 import { Formik, FormikHelpers } from "formik";
 import styles from "./ProfileForm.module.scss";
 import { Button, Checkbox, CustomForm, CustomSelect, ImgInput, TextInput, Typography } from "common/index";
-import { ProfileType } from "types/index";
+import { ProfileFormType, ProfileType } from "types/index";
 import { profileValidation } from "validation/index";
 import { useState } from "react";
 
-export const ProfileForm: React.FC = () => {
+export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "" }) => {
   const initialValues: ProfileType = {
     _id: "",
     photo: null,
@@ -21,7 +21,7 @@ export const ProfileForm: React.FC = () => {
     values.gender = gender === "male" ? "female" : "male";
     setGender(values.gender);
   }
-  const handleSubmit = async ({ _id, ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
+  const handleSubmit = async ({ ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
     console.log(values);
   };
   return (
@@ -64,7 +64,7 @@ export const ProfileForm: React.FC = () => {
             <CustomSelect name="city" className={styles.profile__input} />
             <div className={styles.profile__buttons}>
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.profile__button} />
-              <Button text="Close" isBlack={true} />
+              <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />
             </div>
             {/* {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>} */}
           </CustomForm>

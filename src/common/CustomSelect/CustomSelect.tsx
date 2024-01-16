@@ -34,7 +34,7 @@ export const CustomSelect: React.FC<React.SelectHTMLAttributes<HTMLSelectElement
   return (
     <label htmlFor={props.name} className={`${styles.select} ${props.className}`}>
       <Field name={props.name} as="select" className={styles.input}>
-        <option>City</option>
+        <option value="">City</option>
         {city.map((item) => (
           <option key={item} value={item}>
             {item}
