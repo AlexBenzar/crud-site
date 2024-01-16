@@ -1,0 +1,60 @@
+@use "scss/variables";
+
+.profile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(variables.$black, $alpha: 0.92);
+  z-index: 2;
+  &__form {
+    background-color: variables.$text-white;
+    padding: 50px 80px;
+  }
+  &__title {
+    margin-bottom: 25px;
+  }
+  &__img {
+    margin-bottom: 25px;
+    a {
+      color: variables.$black;
+    }
+  }
+  &__input {
+    margin-bottom: 25px;
+  }
+  &__gender {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+  &__text {
+    color: black !important;
+    margin-bottom: 25px;
+  }
+  &__checkboxes {
+    align-self: center;
+    gap: 50px;
+    display: flex;
+  }
+  &__checkbox {
+    div {
+      color: black;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+  &__button {
+    background-color: variables.$green;
+  }
+}

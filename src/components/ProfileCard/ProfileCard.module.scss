@@ -56,16 +56,18 @@
     background-color: variables.$text-white;
     transition: all 0.3s ease;
   }
-  &__button:first-child {
-    border-radius: 15px 0 0 15px;
-    &:hover {
-      background-color: variables.$green;
+  &__button {
+    &:first-child {
+      border-radius: 15px 0 0 15px;
+      &:hover {
+        background-color: variables.$green;
+      }
     }
-  }
-  &__button:last-child {
-    border-radius: 0 15px 15px 0;
-    &:hover {
-      background-color: variables.$red;
+    &:last-child {
+      border-radius: 0 15px 15px 0;
+      &:hover {
+        background-color: variables.$red;
+      }
     }
   }
 }

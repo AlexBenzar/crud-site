@@ -11,9 +11,16 @@
     color: #341e11;
     border: 0;
     outline: none;
+    &[type="date"]::-webkit-calendar-picker-indicator {
+      background: url("img/svg/calendar.svg") no-repeat;
+    }
   }
   .black {
     color: variables.$text-white;
     background: rgba(variables.$black, $alpha: 0.92);
+    &:-webkit-autofill {
+      -webkit-text-fill-color: variables.$text-white;
+      -webkit-box-shadow: 0 0 0 50px rgba(variables.$black, $alpha: 0.92) inset;
+    }
   }
 }

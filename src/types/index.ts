@@ -44,7 +44,11 @@ export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export interface ImageProps extends React.HTMLAttributes<HTMLDivElement> {
-  setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => Promise<void | FormikErrors<RegistrationType>>;
+  setFieldValue: (
+    field: string,
+    value: unknown,
+    shouldValidate?: boolean,
+  ) => Promise<void | FormikErrors<RegistrationType | ProfileType>>;
   image: File | null;
   imageName: string;
 }
@@ -73,10 +77,18 @@ export interface UserFormType {
 
 export interface ProfileType {
   _id: string;
+  photo: string | File | null;
   full_name: string;
   gender: string;
-  birthdate: Date;
+  birthdate: string;
   city: string;
   user: string;
   __v: number;
+}
+
+export interface ProfileFormType {
+  isOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  data?: User;
+  id?: string;
+  refetch: any;
 }

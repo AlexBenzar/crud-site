@@ -1,0 +1,22 @@
+@use "scss/variables";
+
+.select {
+  width: 100%;
+  .input {
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 490px;
+    box-sizing: content-box;
+    font-size: 21px;
+    font-weight: 400;
+    color: variables.$text-white;
+    background: rgba(variables.$black, $alpha: 0.92);
+    border: 0;
+    outline: none;
+    appearance: none;
+    background-image: url("img/svg/arrow.svg");
+    background-position: center right 20px;
+    background-repeat: no-repeat;
+  }
+}
