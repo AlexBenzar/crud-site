@@ -1,36 +1,9 @@
 import { ErrorMessage, Field } from "formik";
 import styles from "./CustomSelect.module.scss";
 import { Typography } from "common/Typography/Typography";
+import { city } from "./constant";
 
 export const CustomSelect: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (props) => {
-  const city = [
-    "Київ",
-    "Івано-Франківськ",
-    "Вінниця",
-    "Дніпро",
-    "Донецьк",
-    "Житомир",
-    "Запоріжжя",
-    "Кропивницький",
-    "Луганськ",
-    "Луцьк",
-    "Львів",
-    "Миколаїв",
-    "Одеса",
-    "Полтава",
-    "Рівне",
-    "Сімферополь",
-    "Суми",
-    "Тернопіль",
-    "Ужгород",
-    "Харків",
-    "Херсон",
-    "Хмельницький",
-    "Черкаси",
-    "Чернівці",
-    "Чернігів",
-  ];
-
   return (
     <label htmlFor={props.name} className={`${styles.select} ${props.className}`}>
       <Field name={props.name} as="select" className={styles.input}>

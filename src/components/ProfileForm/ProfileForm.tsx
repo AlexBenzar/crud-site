@@ -19,10 +19,10 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
     __v: 0,
   };
   const [gender, setGender] = useState("male");
-  function changeGender(values: ProfileType) {
+  const changeGender = (values: ProfileType) => {
     values.gender = gender === "male" ? "female" : "male";
     setGender(values.gender);
-  }
+  };
   const handleSubmit = async ({ ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
     const { error }: { data?: { message: string }; error?: unknown } = await createProfile({ id: id, ...values });
     if (!error) {
@@ -32,7 +32,7 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
     }
   };
   return (
-    <div className={styles.profile}>
+    <div className={styles.profile} onClick={() => isOpen(false)}>
       <Formik initialValues={initialValues} validationSchema={profileValidation} onSubmit={handleSubmit}>
         {({ isSubmitting, handleSubmit, setFieldValue, values }) => (
           <CustomForm onSubmit={handleSubmit} className={styles.profile__form} onClick={(e) => e.stopPropagation()}>
