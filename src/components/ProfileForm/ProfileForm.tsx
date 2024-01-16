@@ -4,8 +4,10 @@ import { Button, Checkbox, CustomForm, CustomSelect, ImgInput, TextInput, Typogr
 import { ProfileFormType, ProfileType } from "types/index";
 import { profileValidation } from "validation/index";
 import { useState } from "react";
+import { usePostProfileMutation } from "store/slices/profileSlice";
 
 export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "" }) => {
+  const [createProfile, { error }] = usePostProfileMutation();
   const initialValues: ProfileType = {
     _id: "",
     photo: null,
@@ -22,7 +24,12 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
     setGender(values.gender);
   }
   const handleSubmit = async ({ ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
-    console.log(values);
+    const { error }: { data?: { message: string }; error?: unknown } = await createProfile({ id: id, ...values });
+    if (!error) {
+      setSubmitting(false);
+      isOpen(false);
+      refetch();
+    }
   };
   return (
     <div className={styles.profile}>
@@ -66,7 +73,7 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.profile__button} />
               <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />
             </div>
-            {/* {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>} */}
+            {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
           </CustomForm>
         )}
       </Formik>

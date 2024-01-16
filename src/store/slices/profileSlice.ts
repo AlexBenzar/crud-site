@@ -24,7 +24,19 @@ export const profileApi = createApi({
       }),
       forceRefetch: () => true,
     }),
+    postProfile: builder.mutation<{ message: string }, ProfileType & { id: string }>({
+      query: ({ id, photo, full_name, birthdate, city, gender }) => {
+        const body = new FormData();
+        body.append("full_name", full_name);
+        body.append("birthdate", birthdate);
+        body.append("city", city);
+        body.append("gender", gender);
+        photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
+
+        return { url: `profile/${id}`, method: "POST", body, formData: true };
+      },
+    }),
   }),
 });
 
-export const { useGetProfilesQuery } = profileApi;
+export const { useGetProfilesQuery, usePostProfileMutation } = profileApi;
