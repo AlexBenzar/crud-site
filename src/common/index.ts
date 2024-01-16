@@ -5,3 +5,4 @@ export * from "../common/ImgInput/ImgInput";
 export * from "./CustomForm/CustomForm";
 export * from "./Typography/Typography";
 export * from "./Loader/Loader";
+export * from "./CustomSelect/CustomSelect";

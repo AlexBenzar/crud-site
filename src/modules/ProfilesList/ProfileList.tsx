@@ -1,7 +1,6 @@
-import { ProfileCard } from "components/index";
+import { AddNewProfile, ProfileCard, ProfileForm } from "components/index";
 import styles from "./ProfileList.module.scss";
 import { Loader, Typography } from "common/index";
-import { AddNewProfile } from "components/AddNewProfile/AddNewProfile";
 import { useGetProfilesQuery } from "store/slices/profileSlice";
 import { ProfileType } from "types/index";
 import { useParams } from "react-router-dom";
@@ -29,6 +28,7 @@ export const ProfileList: React.FC = () => {
           <AddNewProfile />
         </div>
       </div>
+      <ProfileForm />
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

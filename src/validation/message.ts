@@ -6,4 +6,7 @@ export const ErrorMessages = {
   PasswordEmpty: "Password is required",
   PictureError: "make sure you have entered the link correctly",
   PictureTooBig: "Uploaded image is too big",
+  FullNameEmpty: "name can't be empty",
+  DateEmpty: "Enter your date",
+  CityEmpty: "City is required",
 };

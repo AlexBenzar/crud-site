@@ -1,22 +1,18 @@
 @use "scss/variables";
 
-.label {
+.select {
+  width: 100%;
   .input {
     padding: 20px;
-    margin-bottom: 10px;
     border-radius: 20px;
+    margin-bottom: 10px;
     width: 490px;
+    box-sizing: content-box;
     font-size: 21px;
     font-weight: 400;
-    color: #341e11;
-    border: 0;
-    outline: none;
-    &[type="date"]::-webkit-calendar-picker-indicator {
-      background: url("img/svg/calendar.svg") no-repeat;
-    }
-  }
-  .black {
     color: variables.$text-white;
     background: rgba(variables.$black, $alpha: 0.92);
+    border: 0;
+    outline: none;
   }
 }
