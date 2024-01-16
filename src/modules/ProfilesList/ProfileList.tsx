@@ -23,7 +23,7 @@ export const ProfileList: React.FC = () => {
       <div className={styles.profile__list}>
         {data.map((profile: ProfileType) => (
           <div key={profile._id} className={styles.profile__item}>
-            <ProfileCard {...profile} />
+            <ProfileCard {...profile} refetch={refetch} />
           </div>
         ))}
         <div className={styles.profile__item}>

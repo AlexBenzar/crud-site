@@ -1,12 +1,12 @@
 import { Formik, FormikHelpers } from "formik";
 import styles from "./UserForm.module.scss";
 import { Button, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
-import { RegistrationType, UserFormType } from "types/index";
+import { RegistrationType, EditFormType } from "types/index";
 import { EditUserValidation } from "validation/index";
 import { useState } from "react";
 import { usePatchUserDataMutation } from "store/slices/authSlice";
 
-export const UserForm: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
+export const UserForm: React.FC<EditFormType> = ({ data, isOpen, refetch }) => {
   const [editUser, { error }] = usePatchUserDataMutation();
   const initialValues: RegistrationType = {
     username: data.username,

@@ -36,7 +36,13 @@ export const profileApi = createApi({
         return { url: `profile/${id}`, method: "POST", body, formData: true };
       },
     }),
+    deleteProfile: builder.mutation<{ message: string }, string>({
+      query: (id) => ({
+        url: `profile/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useGetProfilesQuery, usePostProfileMutation } = profileApi;
+export const { useGetProfilesQuery, usePostProfileMutation, useDeleteProfileMutation } = profileApi;

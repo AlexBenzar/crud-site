@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { SerializedError } from "@reduxjs/toolkit/react";
 import { FormikErrors } from "formik";
 
 export interface AuthType {
@@ -71,8 +72,23 @@ export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {
 
 export interface UserFormType {
   isOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: User;
   refetch: any;
+}
+
+export interface EditFormType extends UserFormType {
+  data: User;
+}
+
+export interface DeleteFormType extends UserFormType {
+  id: string;
+  deleteMethod: any;
+  error: ErrorMessage | SerializedError | undefined;
+  nav?: string;
+}
+
+export interface ProfileFormType extends UserFormType {
+  data?: User;
+  id?: string;
 }
 
 export interface ProfileType {
@@ -84,11 +100,5 @@ export interface ProfileType {
   city: string;
   user: string;
   __v: number;
-}
-
-export interface ProfileFormType {
-  isOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data?: User;
-  id?: string;
-  refetch: any;
+  refetch?: any;
 }
