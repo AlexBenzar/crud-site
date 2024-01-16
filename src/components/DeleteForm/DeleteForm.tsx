@@ -1,13 +1,13 @@
 import { Button, Typography } from "common/index";
 import styles from "./DeleteForm.module.scss";
-import { DeleteFormType } from "types/index";
+import { DeleteFormType, ErrorResponse } from "types/index";
 import { useNavigate } from "react-router-dom";
 
 export const DeleteForm: React.FC<DeleteFormType> = ({ id, isOpen, refetch, deleteMethod, error, nav }) => {
   const navigate = useNavigate();
 
   async function DeleteHandler() {
-    const { error }: { data?: { message: string }; error?: unknown } = await deleteMethod(id);
+    const { error }: ErrorResponse = await deleteMethod(id);
     if (!error) {
       refetch();
       isOpen(false);

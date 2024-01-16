@@ -30,7 +30,7 @@ export const Layout: React.FC = () => {
       <div className={styles.sidebar}>
         <div className={styles.sidebar__profile}>
           <div className={styles.sidebar__img}>
-            <img src={data.picture ?? Avatar} alt="profile pic" />
+            <img src={(data.picture as string) ?? Avatar} alt="profile pic" />
           </div>
           <div className={styles.sidebar__username}>{data.username}</div>
         </div>

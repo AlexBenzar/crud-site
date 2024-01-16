@@ -11,13 +11,10 @@ export interface AuthType {
 export interface RegistrationType extends AuthType {
   username: string;
   role: string;
-  picture: File | null;
+  picture: File | null | string;
 }
 
-export interface User extends AuthType {
-  username: string;
-  picture: string;
-  role: string;
+export interface User extends RegistrationType {
   __v: number;
   _id: string;
 }
@@ -101,4 +98,14 @@ export interface ProfileType {
   user: string;
   __v: number;
   refetch?: any;
+}
+
+export interface ModifyCardType {
+  isHover: boolean;
+  setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface ErrorResponse {
+  data?: { message: string };
+  error?: unknown;
 }

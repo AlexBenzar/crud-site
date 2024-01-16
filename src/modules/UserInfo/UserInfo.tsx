@@ -18,7 +18,7 @@ export const UserInfo: React.FC = () => {
   return data ? (
     <div className={styles.user}>
       <div className={styles.user__img}>
-        <img src={data.picture ?? Avatar} alt="Avatar" />
+        <img src={(data.picture as string) ?? Avatar} alt="Avatar" />
       </div>
       <Typography variant="body-1" className={styles.user__name}>
         {data.username}

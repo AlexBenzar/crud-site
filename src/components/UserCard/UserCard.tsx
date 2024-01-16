@@ -7,7 +7,7 @@ export const UserCard: React.FC<User> = ({ picture, username, email }) => {
   return (
     <div className={styles.card}>
       <div className={styles.card__img}>
-        <img src={picture ?? Avatar} alt="profile pic" />
+        <img src={(picture as string) ?? Avatar} alt="profile pic" />
       </div>
       <Typography variant="body-2" className={styles.card__text}>
         {username}

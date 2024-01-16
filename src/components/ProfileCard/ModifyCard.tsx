@@ -1,10 +1,8 @@
 import { Button } from "common/index";
 import styles from "./ProfileCard.module.scss";
+import { ModifyCardType } from "types/index";
 
-export const ModifyCard: React.FC<{ isHover: boolean; setIsDelete: React.Dispatch<React.SetStateAction<boolean>> }> = ({
-  isHover,
-  setIsDelete,
-}) => {
+export const ModifyCard: React.FC<ModifyCardType> = ({ isHover, setIsDelete }) => {
   return (
     <div className={`${styles.modify} ${!isHover && styles.modify__hide}`}>
       <Button text="Edit" isBlack={true} className={styles.modify__button} />
