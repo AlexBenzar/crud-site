@@ -1,10 +1,11 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "store/store";
-import { URL } from "store/url";
+import { URL, authApiUrls } from "store/url";
 import { ErrorMessage, User, AuthType, RegistrationType, UserResponse } from "types/index";
 
 export const authApi = createApi({
   reducerPath: "userApi",
+  tagTypes: ["Users", "User"],
   baseQuery: fetchBaseQuery({
     baseUrl: `${URL}api/`,
     credentials: "include",
@@ -18,51 +19,28 @@ export const authApi = createApi({
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
     signUp: builder.mutation<UserResponse, RegistrationType>({
-      query: ({ username, email, password, role, picture }) => {
-        const body = new FormData();
-        body.append("username", username);
-        body.append("email", email);
-        body.append("password", password);
-        body.append("role", role);
-        picture ? body.append("picture", picture, picture.name) : body.append("picture", JSON.stringify(picture));
-        return { url: "signup", method: "POST", body, formData: true };
-      },
+      query: authApiUrls.signUp,
+      invalidatesTags: ["User", "Users"],
     }),
     signIn: builder.mutation<UserResponse, AuthType>({
-      query: (body) => ({
-        url: "signin",
-        method: "POST",
-        body,
-      }),
+      query: authApiUrls.signIn,
+      invalidatesTags: ["User", "Users"],
     }),
     Users: builder.query<User[], void>({
-      query: () => ({
-        url: "users",
-        method: "GET",
-      }),
-      forceRefetch: () => true,
+      query: authApiUrls.users,
+      providesTags: ["Users"],
     }),
     GetUserData: builder.query<User, string>({
-      query: (id) => ({
-        url: `user/${id}`,
-        method: "GET",
-      }),
-      forceRefetch: () => true,
+      query: authApiUrls.getUser,
+      providesTags: ["User"],
     }),
     PatchUserData: builder.mutation<{ message: string }, RegistrationType & { id: string }>({
-      query: ({ id, email, username, picture, role }) => {
-        const body: { email: string; username: string; role: string; picture?: null | File } = { email, username, role };
-        if (picture) {
-          body.picture = picture;
-        }
-        return { url: `user/${id}`, method: "PATCH", body };
-      },
+      query: authApiUrls.patchUser,
+      invalidatesTags: ["User", "Users"],
     }),
     DeleteUserData: builder.mutation<{ message: string }, string>({
-      query: (id) => ({
-        url: `user/${id}`,
-        method: "DELETE",
-      }),
+      query: authApiUrls.deleteUser,
+      invalidatesTags: ["User", "Users"],
     }),
   }),
 });

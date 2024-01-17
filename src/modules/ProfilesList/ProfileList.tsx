@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const ProfileList: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading, isFetching, refetch } = useGetProfilesQuery(id ?? "");
+  const { data, isLoading, isFetching } = useGetProfilesQuery(id ?? "");
   const [isCreate, setIsCreate] = useState(false);
 
   if (isLoading || isFetching) {
@@ -30,7 +30,7 @@ export const ProfileList: React.FC = () => {
           <AddNewProfile onClick={() => setIsCreate(true)} />
         </div>
       </div>
-      {isCreate && <ProfileForm isOpen={setIsCreate} refetch={refetch} id={id} />}
+      {isCreate && <ProfileForm isOpen={setIsCreate} id={id} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

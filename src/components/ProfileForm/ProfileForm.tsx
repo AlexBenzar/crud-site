@@ -1,12 +1,12 @@
 import { Formik, FormikHelpers } from "formik";
 import styles from "./ProfileForm.module.scss";
 import { Button, Checkbox, CustomForm, CustomSelect, ImgInput, TextInput, Typography } from "common/index";
-import { ProfileFormType, ProfileType } from "types/index";
+import { ErrorResponse, ProfileFormType, ProfileType } from "types/index";
 import { profileValidation } from "validation/index";
 import { useState } from "react";
 import { usePostProfileMutation } from "store/slices/profileSlice";
 
-export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "" }) => {
+export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "" }) => {
   const [createProfile, { error }] = usePostProfileMutation();
   const initialValues: ProfileType = {
     _id: "",
@@ -24,11 +24,10 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
     setGender(values.gender);
   };
   const handleSubmit = async ({ ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
-    const { error }: { data?: { message: string }; error?: unknown } = await createProfile({ id: id, ...values });
+    const { error }: ErrorResponse = await createProfile({ id: id, ...values });
     if (!error) {
       setSubmitting(false);
       isOpen(false);
-      refetch();
     }
   };
   return (

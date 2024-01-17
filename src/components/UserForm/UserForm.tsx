@@ -1,12 +1,12 @@
 import { Formik, FormikHelpers } from "formik";
 import styles from "./UserForm.module.scss";
 import { Button, Checkbox, CustomForm, ImgInput, TextInput, Typography } from "common/index";
-import { RegistrationType, UserFormType } from "types/index";
+import { RegistrationType, EditFormType, ErrorResponse } from "types/index";
 import { EditUserValidation } from "validation/index";
 import { useState } from "react";
 import { usePatchUserDataMutation } from "store/slices/authSlice";
 
-export const UserForm: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
+export const UserForm: React.FC<EditFormType> = ({ data, isOpen }) => {
   const [editUser, { error }] = usePatchUserDataMutation();
   const initialValues: RegistrationType = {
     username: data.username,
@@ -17,11 +17,10 @@ export const UserForm: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
   };
   const [isAdmin, setIsAdmin] = useState(data.role == "admin" ? true : false);
   const handleSubmit = async ({ ...values }: RegistrationType, { setSubmitting }: FormikHelpers<RegistrationType>) => {
-    const { error }: { data?: { message: string }; error?: unknown } = await editUser({ id: data._id, ...values });
+    const { error }: ErrorResponse = await editUser({ id: data._id, ...values });
     if (!error) {
       setSubmitting(false);
       isOpen(false);
-      refetch();
     }
   };
   function changeUserRole(values: RegistrationType) {
@@ -36,7 +35,12 @@ export const UserForm: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
             <Typography variant="title-3" className={styles.edit__title}>
               Edit
             </Typography>
-            <ImgInput className={styles.edit__img} setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
+            <ImgInput
+              className={styles.edit__img}
+              setFieldValue={setFieldValue}
+              image={values.picture as File}
+              imageName="picture"
+            />
             <div className={styles.edit__input}>
               <Typography variant="body-1" className={styles.edit__text}>
                 Username

@@ -52,7 +52,12 @@ export const SignUp: React.FC = () => {
             <Typography variant="title-1" className={styles.signUp__h1}>
               Sign up
             </Typography>
-            <ImgInput className={styles.signUp__img} setFieldValue={setFieldValue} image={values.picture} imageName="picture" />
+            <ImgInput
+              className={styles.signUp__img}
+              setFieldValue={setFieldValue}
+              image={values.picture as File}
+              imageName="picture"
+            />
             <TextInput type="text" name="username" placeholder="Username" className={styles.signUp__input} />
             <TextInput type="email" name="email" placeholder="Email" className={styles.signUp__input} />
             <TextInput type="password" name="password" placeholder="Password" className={styles.signUp__input} />

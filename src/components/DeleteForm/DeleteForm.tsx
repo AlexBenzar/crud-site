@@ -1,17 +1,16 @@
 import { Button, Typography } from "common/index";
-import styles from "./UserDelete.module.scss";
-import { UserFormType } from "types/index";
+import styles from "./DeleteForm.module.scss";
+import { DeleteFormType, ErrorResponse } from "types/index";
 import { useNavigate } from "react-router-dom";
-import { useDeleteUserDataMutation } from "store/slices/authSlice";
 
-export const UserDelete: React.FC<UserFormType> = ({ data, isOpen, refetch }) => {
+export const DeleteForm: React.FC<DeleteFormType> = ({ id, isOpen, deleteDataFunction, error, nav }) => {
   const navigate = useNavigate();
-  const [deleteUser, { error }] = useDeleteUserDataMutation();
+
   async function DeleteHandler() {
-    const { error }: { data?: { message: string }; error?: unknown } = await deleteUser(data._id);
+    const { error }: ErrorResponse = await deleteDataFunction(id);
     if (!error) {
-      refetch();
-      navigate("/users");
+      isOpen(false);
+      nav && navigate(nav);
     }
   }
   return (
@@ -24,7 +23,7 @@ export const UserDelete: React.FC<UserFormType> = ({ data, isOpen, refetch }) =>
           <Button text="Yes" isBlack={true} className={styles.delete__button} onClick={DeleteHandler} />
           <Button text="No" isBlack={true} onClick={() => isOpen(false)} />
         </div>
-        {error && "data" in error && <Typography variant="error-1">{error.data.message}</Typography>}
+        {error && "data" in error && <Typography variant="error-1">{error?.data?.message}</Typography>}
       </div>
     </div>
   );

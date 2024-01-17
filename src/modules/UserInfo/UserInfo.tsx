@@ -2,22 +2,23 @@ import { useParams } from "react-router-dom";
 import { Avatar } from "img";
 import { Typography, Button, Loader } from "common/index";
 import styles from "./UserInfo.module.scss";
-import { useGetUserDataQuery } from "store/slices/authSlice";
-import { UserForm, UserDelete } from "components/index";
+import { useGetUserDataQuery, useDeleteUserDataMutation } from "store/slices/authSlice";
+import { UserForm, DeleteForm } from "components/index";
 import { useState } from "react";
 
 export const UserInfo: React.FC = () => {
   const { id } = useParams();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const { data, isLoading, isFetching, refetch } = useGetUserDataQuery(id as string);
+  const { data, isLoading, isFetching } = useGetUserDataQuery(id as string);
+  const [deleteUser, { error }] = useDeleteUserDataMutation();
   if (isLoading || isFetching) {
     return <Loader />;
   }
   return data ? (
     <div className={styles.user}>
       <div className={styles.user__img}>
-        <img src={data.picture ?? Avatar} alt="Avatar" />
+        <img src={(data.picture as string) ?? Avatar} alt="Avatar" />
       </div>
       <Typography variant="body-1" className={styles.user__name}>
         {data.username}
@@ -32,8 +33,8 @@ export const UserInfo: React.FC = () => {
         <Button text="Edit" isBlack={true} className={styles.user__button} onClick={() => setIsEdit(true)} />
         <Button text="Delete" isBlack={true} onClick={() => setIsDelete(true)} />
       </div>
-      {isEdit && <UserForm data={data} isOpen={setIsEdit} refetch={refetch} />}
-      {isDelete && <UserDelete data={data} isOpen={setIsDelete} refetch={refetch} />}
+      {isEdit && <UserForm data={data} isOpen={setIsEdit} />}
+      {isDelete && <DeleteForm id={data._id} isOpen={setIsDelete} deleteDataFunction={deleteUser} error={error} nav="/users" />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>
