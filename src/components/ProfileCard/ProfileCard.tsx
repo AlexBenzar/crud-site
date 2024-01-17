@@ -7,7 +7,7 @@ import { ProfileType } from "types/index";
 import { DeleteForm } from "components/DeleteForm/DeleteForm";
 import { useDeleteProfileMutation } from "store/slices/profileSlice";
 
-export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender, _id, refetch }) => {
+export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender, _id }) => {
   const [deleteProfile, { error }] = useDeleteProfileMutation();
   const [isHover, setIsHover] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -37,7 +37,7 @@ export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, ful
         </div>
         <ModifyCard isHover={isHover} setIsDelete={setIsDelete} />
       </div>
-      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} refetch={refetch} deleteMethod={deleteProfile} error={error} />}
+      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} deleteDataFunction={deleteProfile} error={error} />}
     </>
   );
 };

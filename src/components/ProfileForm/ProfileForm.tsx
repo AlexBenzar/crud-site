@@ -6,7 +6,7 @@ import { profileValidation } from "validation/index";
 import { useState } from "react";
 import { usePostProfileMutation } from "store/slices/profileSlice";
 
-export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "" }) => {
+export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "" }) => {
   const [createProfile, { error }] = usePostProfileMutation();
   const initialValues: ProfileType = {
     _id: "",
@@ -28,7 +28,6 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, refetch, id = "
     if (!error) {
       setSubmitting(false);
       isOpen(false);
-      refetch();
     }
   };
   return (

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export const ProfileList: React.FC = () => {
   const { id } = useParams();
-  const { data, isLoading, isFetching, refetch } = useGetProfilesQuery(id ?? "");
+  const { data, isLoading, isFetching } = useGetProfilesQuery(id ?? "");
   const [isCreate, setIsCreate] = useState(false);
 
   if (isLoading || isFetching) {
@@ -23,14 +23,14 @@ export const ProfileList: React.FC = () => {
       <div className={styles.profile__list}>
         {data.map((profile: ProfileType) => (
           <div key={profile._id} className={styles.profile__item}>
-            <ProfileCard {...profile} refetch={refetch} />
+            <ProfileCard {...profile} />
           </div>
         ))}
         <div className={styles.profile__item}>
           <AddNewProfile onClick={() => setIsCreate(true)} />
         </div>
       </div>
-      {isCreate && <ProfileForm isOpen={setIsCreate} refetch={refetch} id={id} />}
+      {isCreate && <ProfileForm isOpen={setIsCreate} id={id} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

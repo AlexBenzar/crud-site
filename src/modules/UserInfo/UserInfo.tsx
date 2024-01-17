@@ -10,7 +10,7 @@ export const UserInfo: React.FC = () => {
   const { id } = useParams();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const { data, isLoading, isFetching, refetch } = useGetUserDataQuery(id as string);
+  const { data, isLoading, isFetching } = useGetUserDataQuery(id as string);
   const [deleteUser, { error }] = useDeleteUserDataMutation();
   if (isLoading || isFetching) {
     return <Loader />;
@@ -33,10 +33,8 @@ export const UserInfo: React.FC = () => {
         <Button text="Edit" isBlack={true} className={styles.user__button} onClick={() => setIsEdit(true)} />
         <Button text="Delete" isBlack={true} onClick={() => setIsDelete(true)} />
       </div>
-      {isEdit && <UserForm data={data} isOpen={setIsEdit} refetch={refetch} />}
-      {isDelete && (
-        <DeleteForm id={data._id} isOpen={setIsDelete} refetch={refetch} deleteMethod={deleteUser} error={error} nav="/users" />
-      )}
+      {isEdit && <UserForm data={data} isOpen={setIsEdit} />}
+      {isDelete && <DeleteForm id={data._id} isOpen={setIsDelete} deleteDataFunction={deleteUser} error={error} nav="/users" />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

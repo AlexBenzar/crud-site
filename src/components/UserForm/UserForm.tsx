@@ -6,7 +6,7 @@ import { EditUserValidation } from "validation/index";
 import { useState } from "react";
 import { usePatchUserDataMutation } from "store/slices/authSlice";
 
-export const UserForm: React.FC<EditFormType> = ({ data, isOpen, refetch }) => {
+export const UserForm: React.FC<EditFormType> = ({ data, isOpen }) => {
   const [editUser, { error }] = usePatchUserDataMutation();
   const initialValues: RegistrationType = {
     username: data.username,
@@ -21,7 +21,6 @@ export const UserForm: React.FC<EditFormType> = ({ data, isOpen, refetch }) => {
     if (!error) {
       setSubmitting(false);
       isOpen(false);
-      refetch();
     }
   };
   function changeUserRole(values: RegistrationType) {
