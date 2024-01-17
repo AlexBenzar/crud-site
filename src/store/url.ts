@@ -26,10 +26,11 @@ export const authApiUrls = {
     url: `user/${id}`,
   }),
   patchUser: ({ id, email, username, picture, role }: RegistrationType & { id: string }) => {
-    const body: { email: string; username: string; role: string; picture?: null | File } = { email, username, role };
-    if (picture && typeof picture !== "string") {
-      body.picture = picture;
-    }
+    const body = new FormData();
+    body.append("username", username);
+    body.append("email", email);
+    body.append("role", role);
+    picture && typeof picture !== "string" && body.append("picture", picture, picture.name);
     return { url: `user/${id}`, method: "PATCH", body };
   },
   deleteUser: (id: string) => ({

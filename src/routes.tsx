@@ -9,10 +9,6 @@ export const publicRoutes = [
     path: "/signIn",
     Component: <SignIn />,
   },
-  {
-    path: "/dashboard",
-    Component: <Dashboard />,
-  },
 ];
 
 export const privateUserRoutes = [
@@ -37,6 +33,6 @@ export const privateAdminRoutes = [
   },
   {
     path: "/dashboard",
-    Component: <>Dashboard</>,
+    Component: <Dashboard />,
   },
 ];
