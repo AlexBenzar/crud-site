@@ -5,10 +5,12 @@ import { useGetProfilesQuery } from "store/slices/profileSlice";
 import { ProfileType } from "types/index";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { usePostProfileMutation } from "store/slices/profileSlice";
 
 export const ProfileList: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useGetProfilesQuery(id ?? "");
+  const [createProfile, { error }] = usePostProfileMutation();
   const [isCreate, setIsCreate] = useState(false);
 
   if (isLoading || isFetching) {
@@ -30,7 +32,7 @@ export const ProfileList: React.FC = () => {
           <AddNewProfile onClick={() => setIsCreate(true)} />
         </div>
       </div>
-      {isCreate && <ProfileForm isOpen={setIsCreate} id={id} />}
+      {isCreate && <ProfileForm isOpen={setIsCreate} id={id as string} changeProfilesFunction={createProfile} error={error} />}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

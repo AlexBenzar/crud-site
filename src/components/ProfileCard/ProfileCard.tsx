@@ -37,7 +37,7 @@ export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, ful
         </div>
         <ModifyCard isHover={isHover} setIsDelete={setIsDelete} />
       </div>
-      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} deleteDataFunction={deleteProfile} error={error} />}
+      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} changeProfilesFunction={deleteProfile} error={error} />}
     </>
   );
 };

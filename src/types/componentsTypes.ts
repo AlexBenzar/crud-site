@@ -1,22 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SerializedError } from "@reduxjs/toolkit/react";
 import { User } from "./authTypes";
-import { ErrorMessage } from ".";
+import { ErrorMessage, ProfileType } from ".";
 
 export interface UserFormType {
   isOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface DeleteFormType extends UserFormType {
-  id: string;
-  deleteDataFunction: any;
-  error: ErrorMessage | SerializedError;
-  nav?: string;
-}
-
 export interface ProfileFormType extends UserFormType {
-  data?: User;
-  id?: string;
+  id: string;
+  data?: ProfileType;
+  changeProfilesFunction: any;
+  error: ErrorMessage | SerializedError | undefined;
+  nav?: string;
 }
 
 export interface EditFormType extends UserFormType {

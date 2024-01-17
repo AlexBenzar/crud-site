@@ -4,19 +4,17 @@ import { Button, Checkbox, CustomForm, CustomSelect, ImgInput, TextInput, Typogr
 import { ErrorResponse, ProfileFormType, ProfileType } from "types/index";
 import { profileValidation } from "validation/index";
 import { useState } from "react";
-import { usePostProfileMutation } from "store/slices/profileSlice";
 
-export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "" }) => {
-  const [createProfile, { error }] = usePostProfileMutation();
+export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, changeProfilesFunction, error }) => {
   const initialValues: ProfileType = {
-    _id: "",
+    _id: data?._id || "",
     photo: null,
-    full_name: "",
-    gender: "male",
-    birthdate: "",
-    city: "",
-    user: "",
-    __v: 0,
+    full_name: data?.full_name || "",
+    gender: data?.gender || "male",
+    birthdate: data?.birthdate || "",
+    city: data?.city || "",
+    user: data?.user || "",
+    __v: data?.__v || 0,
   };
   const [gender, setGender] = useState("male");
   const changeGender = (values: ProfileType) => {
@@ -24,7 +22,7 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "" }) => {
     setGender(values.gender);
   };
   const handleSubmit = async ({ ...values }: ProfileType, { setSubmitting }: FormikHelpers<ProfileType>) => {
-    const { error }: ErrorResponse = await createProfile({ id: id, ...values });
+    const { error }: ErrorResponse = await changeProfilesFunction({ id, ...values });
     if (!error) {
       setSubmitting(false);
       isOpen(false);
