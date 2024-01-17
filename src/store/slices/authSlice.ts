@@ -20,10 +20,11 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     signUp: builder.mutation<UserResponse, RegistrationType>({
       query: authApiUrls.signUp,
-      invalidatesTags: ["Users"],
+      invalidatesTags: ["User", "Users"],
     }),
     signIn: builder.mutation<UserResponse, AuthType>({
       query: authApiUrls.signIn,
+      invalidatesTags: ["User", "Users"],
     }),
     Users: builder.query<User[], void>({
       query: authApiUrls.users,
