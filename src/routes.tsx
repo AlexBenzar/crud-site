@@ -1,4 +1,4 @@
-import { Profiles, SignIn, SignUp, User, Users } from "./pages";
+import { Profiles, SignIn, SignUp, User, Users, Dashboard } from "./pages";
 
 export const publicRoutes = [
   {
@@ -8,6 +8,10 @@ export const publicRoutes = [
   {
     path: "/signIn",
     Component: <SignIn />,
+  },
+  {
+    path: "/dashboard",
+    Component: <Dashboard />,
   },
 ];
 

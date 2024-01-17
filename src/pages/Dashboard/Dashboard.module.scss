@@ -1,0 +1,40 @@
+@use "scss/variables";
+
+.dashboard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("img/bg/dashboard_bg.png") no-repeat 0% 100%;
+  background-color: variables.$text-white;
+  &__title {
+    margin: 60px 0 70px;
+  }
+  &__card {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  &__stat {
+    display: flex;
+  }
+  &__category {
+    width: 300px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 35px;
+    white-space: nowrap;
+    background-color: rgba(variables.$black, $alpha: 0.92);
+  }
+  &__result {
+    width: 150px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: variables.$red;
+    color: variables.$text-white !important;
+  }
+}
