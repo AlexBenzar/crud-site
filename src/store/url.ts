@@ -21,11 +21,9 @@ export const authApiUrls = {
   }),
   users: () => ({
     url: "users",
-    method: "GET",
   }),
   getUser: (id: string) => ({
     url: `user/${id}`,
-    method: "GET",
   }),
   patchUser: ({ id, email, username, picture, role }: RegistrationType & { id: string }) => {
     const body: { email: string; username: string; role: string; picture?: null | File } = { email, username, role };
@@ -43,7 +41,6 @@ export const authApiUrls = {
 export const profileApiUrls = {
   getProfiles: (id: string) => ({
     url: `profile/${id}`,
-    method: "GET",
   }),
   postProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
     const body = new FormData();
