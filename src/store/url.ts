@@ -25,6 +25,9 @@ export const authApiUrls = {
   getUser: (id: string) => ({
     url: `user/${id}`,
   }),
+  getDashboard: () => ({
+    url: `dashboard/`,
+  }),
   patchUser: ({ id, email, username, picture, role }: RegistrationType & { id: string }) => {
     const body = new FormData();
     body.append("username", username);

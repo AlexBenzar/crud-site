@@ -1,14 +1,21 @@
-import { Typography } from "common/index";
+import { Loader, Typography } from "common/index";
 import { DashboardUsers, DashboardProfiles, DashboardAge } from "img";
+import { useGetDashboardDataQuery } from "store/slices/authSlice";
 import styles from "./Dashboard.module.scss";
 
 export const Dashboard: React.FC = () => {
+  const { data, isFetching, isLoading } = useGetDashboardDataQuery();
   const info = [
-    { img: DashboardUsers, key: "Users", value: 400 },
-    { img: DashboardProfiles, key: "Profiles", value: 500 },
-    { img: DashboardAge, key: "Users 18+", value: 50 },
+    { img: DashboardUsers, key: "Users", value: data?.sumOfProfiles },
+    { img: DashboardProfiles, key: "Profiles", value: data?.sumOfProfiles },
+    { img: DashboardAge, key: "Users 18+", value: data?.sumOfProfilesOlderThen18 },
   ];
-  return (
+
+  if (isLoading || isFetching) {
+    return <Loader />;
+  }
+
+  return data ? (
     <div className={styles.dashboard}>
       <Typography variant="title-2" className={styles.dashboard__title}>
         Dashboard
@@ -27,5 +34,7 @@ export const Dashboard: React.FC = () => {
         ))}
       </div>
     </div>
+  ) : (
+    <Typography variant="error-1">Error occur</Typography>
   );
 };

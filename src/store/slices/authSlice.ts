@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "store/store";
 import { URL, authApiUrls } from "store/url";
-import { ErrorMessage, User, AuthType, RegistrationType, UserResponse } from "types/index";
+import { ErrorMessage, User, AuthType, RegistrationType, UserResponse, Dashboard } from "types/index";
 
 export const authApi = createApi({
   reducerPath: "userApi",
@@ -42,6 +42,9 @@ export const authApi = createApi({
       query: authApiUrls.deleteUser,
       invalidatesTags: ["User", "Users"],
     }),
+    GetDashboardData: builder.query<Dashboard, void>({
+      query: authApiUrls.getDashboard,
+    }),
   }),
 });
 
@@ -52,4 +55,5 @@ export const {
   useUsersQuery,
   usePatchUserDataMutation,
   useDeleteUserDataMutation,
+  useGetDashboardDataQuery,
 } = authApi;
