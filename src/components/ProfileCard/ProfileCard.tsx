@@ -5,12 +5,15 @@ import { ModifyCard } from "./ModifyCard";
 import { useState } from "react";
 import { ProfileType } from "types/index";
 import { DeleteForm } from "components/DeleteForm/DeleteForm";
-import { useDeleteProfileMutation } from "store/slices/profileSlice";
+import { useDeleteProfileMutation, usePatchProfileMutation } from "store/slices/profileSlice";
+import { ProfileForm } from "..";
 
-export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender, _id }) => {
-  const [deleteProfile, { error }] = useDeleteProfileMutation();
+export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender, _id, user, __v }) => {
+  const [deleteProfile, { error: deleteError }] = useDeleteProfileMutation();
+  const [editProfile, { error: editError }] = usePatchProfileMutation();
   const [isHover, setIsHover] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const info = [
     ["gender", gender],
     ["birthdate", new Date(birthdate).toISOString().split("T")[0]],
@@ -35,9 +38,18 @@ export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, ful
             </div>
           ))}
         </div>
-        <ModifyCard isHover={isHover} setIsDelete={setIsDelete} />
+        <ModifyCard isHover={isHover} setIsDelete={setIsDelete} setIsEdit={setIsEdit} />
       </div>
-      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} deleteDataFunction={deleteProfile} error={error} />}
+      {isDelete && <DeleteForm id={_id} isOpen={setIsDelete} changeProfilesFunction={deleteProfile} error={deleteError} />}
+      {isEdit && (
+        <ProfileForm
+          id={_id}
+          isOpen={setIsEdit}
+          changeProfilesFunction={editProfile}
+          error={editError}
+          data={{ photo, birthdate, city, full_name, gender, _id, user, __v }}
+        />
+      )}
     </>
   );
 };

@@ -1,21 +1,21 @@
 import { Button, Typography } from "common/index";
 import styles from "./DeleteForm.module.scss";
-import { DeleteFormType, ErrorResponse } from "types/index";
+import { ProfileFormType, ErrorResponse } from "types/index";
 import { useNavigate } from "react-router-dom";
 
-export const DeleteForm: React.FC<DeleteFormType> = ({ id, isOpen, deleteDataFunction, error, nav }) => {
+export const DeleteForm: React.FC<ProfileFormType> = ({ id, isOpen, changeProfilesFunction, error, nav }) => {
   const navigate = useNavigate();
 
   async function DeleteHandler() {
-    const { error }: ErrorResponse = await deleteDataFunction(id);
+    const { error }: ErrorResponse = await changeProfilesFunction(id);
     if (!error) {
       isOpen(false);
       nav && navigate(nav);
     }
   }
   return (
-    <div className={styles.delete}>
-      <div className={styles.delete__form}>
+    <div className={styles.delete} onClick={() => isOpen(false)}>
+      <div className={styles.delete__form} onClick={(e) => e.stopPropagation()}>
         <Typography variant="body-3" className={styles.delete__text}>
           Are you sure you want to delete user?
         </Typography>

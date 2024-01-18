@@ -34,7 +34,9 @@ export const UserInfo: React.FC = () => {
         <Button text="Delete" isBlack={true} onClick={() => setIsDelete(true)} />
       </div>
       {isEdit && <UserForm data={data} isOpen={setIsEdit} />}
-      {isDelete && <DeleteForm id={data._id} isOpen={setIsDelete} deleteDataFunction={deleteUser} error={error} nav="/users" />}
+      {isDelete && (
+        <DeleteForm id={data._id} isOpen={setIsDelete} changeProfilesFunction={deleteUser} error={error} nav="/users" />
+      )}
     </div>
   ) : (
     <Typography variant="error-1">Error occur</Typography>

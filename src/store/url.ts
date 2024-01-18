@@ -26,10 +26,11 @@ export const authApiUrls = {
     url: `user/${id}`,
   }),
   patchUser: ({ id, email, username, picture, role }: RegistrationType & { id: string }) => {
-    const body: { email: string; username: string; role: string; picture?: null | File } = { email, username, role };
-    if (picture && typeof picture !== "string") {
-      body.picture = picture;
-    }
+    const body = new FormData();
+    body.append("username", username);
+    body.append("email", email);
+    body.append("role", role);
+    picture && typeof picture !== "string" && body.append("picture", picture, picture.name);
     return { url: `user/${id}`, method: "PATCH", body };
   },
   deleteUser: (id: string) => ({
@@ -51,6 +52,15 @@ export const profileApiUrls = {
     photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
 
     return { url: `profile/${id}`, method: "POST", body, formData: true };
+  },
+  updateProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
+    const body = new FormData();
+    body.append("full_name", full_name);
+    body.append("birthdate", birthdate);
+    body.append("city", city);
+    body.append("gender", gender);
+    photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
+    return { url: `profile/${id}`, method: "PATCH", body, formData: true };
   },
   deleteProfile: (id: string) => ({
     url: `profile/${id}`,
