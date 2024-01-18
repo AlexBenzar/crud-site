@@ -1,42 +1,21 @@
 import { Loader, Typography } from "common/index";
 import { DashboardUsers, DashboardProfiles, DashboardAge } from "img";
+import { useGetDashboardDataQuery } from "store/slices/authSlice";
 import styles from "./Dashboard.module.scss";
-import { useGetAllProfilesQuery } from "store/slices/profileSlice";
-import { useUsersQuery } from "store/slices/authSlice";
-import { useEffect, useState } from "react";
 
 export const Dashboard: React.FC = () => {
-  const { data: users } = useUsersQuery();
-  const { data: profiles } = useGetAllProfilesQuery();
-  const [isLoading, setIsLoading] = useState(false);
-  const [sumOfUsers, setSumOfUsers] = useState(0);
-  const [sumOfProfiles, setSumOfProfiles] = useState(0);
-  const [sumOfProfilesOlderThen18, setSumOfProfilesOlderThen18] = useState(0);
-
+  const { data, isFetching, isLoading } = useGetDashboardDataQuery();
   const info = [
-    { img: DashboardUsers, key: "Users", value: sumOfUsers },
-    { img: DashboardProfiles, key: "Profiles", value: sumOfProfiles },
-    { img: DashboardAge, key: "Users 18+", value: sumOfProfilesOlderThen18 },
+    { img: DashboardUsers, key: "Users", value: data?.sumOfProfiles },
+    { img: DashboardProfiles, key: "Profiles", value: data?.sumOfProfiles },
+    { img: DashboardAge, key: "Users 18+", value: data?.sumOfProfilesOlderThen18 },
   ];
 
-  useEffect(() => {
-    if (users && profiles) {
-      setSumOfUsers(users.reduce((res) => res + 1, 0));
-      setSumOfProfiles(profiles.reduce((res) => res + 1, 0));
-      setSumOfProfilesOlderThen18(
-        profiles.reduce((res, val) => {
-          const age = Date.now() - new Date(val.birthdate).getTime();
-          if (new Date(age).getUTCFullYear() - 1970 >= 18) {
-            return res + 1;
-          }
-          return res;
-        }, 0),
-      );
-      setIsLoading(true);
-    }
-  }, [users, profiles]);
+  if (isLoading || isFetching) {
+    return <Loader />;
+  }
 
-  return isLoading ? (
+  return data ? (
     <div className={styles.dashboard}>
       <Typography variant="title-2" className={styles.dashboard__title}>
         Dashboard
@@ -56,6 +35,6 @@ export const Dashboard: React.FC = () => {
       </div>
     </div>
   ) : (
-    <Loader />
+    <Typography variant="error-1">Error occur</Typography>
   );
 };

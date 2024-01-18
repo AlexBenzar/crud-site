@@ -18,11 +18,6 @@ export const profileApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
-    getAllProfiles: builder.query<ProfileType[], void>({
-      query: profileApiUrls.getAllProfiles,
-      providesTags: ["Profiles"],
-      forceRefetch: () => true,
-    }),
     getProfiles: builder.query<ProfileType[], string>({
       query: profileApiUrls.getProfiles,
       providesTags: ["Profiles"],
@@ -43,10 +38,4 @@ export const profileApi = createApi({
   }),
 });
 
-export const {
-  useGetProfilesQuery,
-  usePostProfileMutation,
-  usePatchProfileMutation,
-  useDeleteProfileMutation,
-  useGetAllProfilesQuery,
-} = profileApi;
+export const { useGetProfilesQuery, usePostProfileMutation, usePatchProfileMutation, useDeleteProfileMutation } = profileApi;

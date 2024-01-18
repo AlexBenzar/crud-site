@@ -19,3 +19,9 @@ export interface UserResponse {
   token: null | string;
   role: null | string;
 }
+
+export interface Dashboard {
+  sumOfProfiles: number;
+  sumOfProfilesOlderThen18: number;
+  sumOfUsers: number;
+}
