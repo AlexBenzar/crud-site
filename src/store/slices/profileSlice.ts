@@ -21,9 +21,14 @@ export const profileApi = createApi({
     getProfiles: builder.query<ProfileType[], string>({
       query: profileApiUrls.getProfiles,
       providesTags: ["Profiles"],
+      forceRefetch: () => true,
     }),
     postProfile: builder.mutation<{ message: string }, ProfileType & { id: string }>({
       query: profileApiUrls.postProfile,
+      invalidatesTags: ["Profiles"],
+    }),
+    patchProfile: builder.mutation<{ message: string }, ProfileType & { id: string }>({
+      query: profileApiUrls.updateProfile,
       invalidatesTags: ["Profiles"],
     }),
     deleteProfile: builder.mutation<{ message: string }, string>({
@@ -33,4 +38,4 @@ export const profileApi = createApi({
   }),
 });
 
-export const { useGetProfilesQuery, usePostProfileMutation, useDeleteProfileMutation } = profileApi;
+export const { useGetProfilesQuery, usePostProfileMutation, usePatchProfileMutation, useDeleteProfileMutation } = profileApi;

@@ -53,6 +53,15 @@ export const profileApiUrls = {
 
     return { url: `profile/${id}`, method: "POST", body, formData: true };
   },
+  updateProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
+    const body = new FormData();
+    body.append("full_name", full_name);
+    body.append("birthdate", birthdate);
+    body.append("city", city);
+    body.append("gender", gender);
+    photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
+    return { url: `profile/${id}`, method: "PATCH", body, formData: true };
+  },
   deleteProfile: (id: string) => ({
     url: `profile/${id}`,
     method: "DELETE",

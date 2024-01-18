@@ -28,4 +28,5 @@ export interface PaginationType extends React.HTMLAttributes<HTMLDivElement> {
 export interface ModifyCardType {
   isHover: boolean;
   setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
