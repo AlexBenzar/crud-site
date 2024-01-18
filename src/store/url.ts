@@ -40,6 +40,9 @@ export const authApiUrls = {
 };
 
 export const profileApiUrls = {
+  getAllProfiles: () => ({
+    url: `profiles`,
+  }),
   getProfiles: (id: string) => ({
     url: `profile/${id}`,
   }),
