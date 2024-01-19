@@ -20,7 +20,7 @@ export const ProfileList: React.FC = () => {
       <Typography variant="title-2" className={styles.profile__title}>
         Profiles
       </Typography>
-      <Sort search={search} setSearch={setSearch} setOrder={setOrder} order={order} />
+      <Sort setSearch={setSearch} setOrder={setOrder} />
       <div className={styles.profile__list}>
         {!isLoading || !isFetching ? (
           data.map((profile: ProfileType) => (

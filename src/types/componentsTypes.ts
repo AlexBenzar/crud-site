@@ -32,8 +32,6 @@ export interface ModifyCardType {
 }
 
 export interface SortType {
-  search: string;
-  order: string;
   setOrder: React.Dispatch<React.SetStateAction<string>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }

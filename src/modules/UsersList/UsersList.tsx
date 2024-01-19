@@ -10,22 +10,23 @@ export const UsersList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersAmount] = useState(8);
 
-  if (isLoading || isFetching) {
-    return <Loader />;
-  }
   return data ? (
     <div className={styles.users}>
       <Typography variant="title-2" className={styles.users__title}>
         Users
       </Typography>
       <div className={styles.users__cards}>
-        {data
-          .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
-          .map((item) => (
-            <Link key={item._id} to={`/users/${item._id}`} className={styles.users__card}>
-              <UserCard {...item} />
-            </Link>
-          ))}
+        {!isLoading || !isFetching ? (
+          data
+            .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
+            .map((item) => (
+              <Link key={item._id} to={`/users/${item._id}`} className={styles.users__card}>
+                <UserCard {...item} />
+              </Link>
+            ))
+        ) : (
+          <Loader />
+        )}
       </div>
       <Pagination
         page={currentPage}
