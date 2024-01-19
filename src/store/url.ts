@@ -1,4 +1,4 @@
-import { AuthType, ProfileType, RegistrationType } from "types/index";
+import { AuthType, ProfileType, RegistrationType, getProfileType } from "types/index";
 
 export const URL = "http://localhost:5000/";
 
@@ -43,8 +43,8 @@ export const authApiUrls = {
 };
 
 export const profileApiUrls = {
-  getProfiles: (id: string) => ({
-    url: `profile/${id}`,
+  getProfiles: ({ id, order, search }: getProfileType) => ({
+    url: `profile/${id}?order=${order}&search=${search}`,
   }),
   postProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
     const body = new FormData();

@@ -30,3 +30,10 @@ export interface ModifyCardType {
   setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface SortType {
+  search: string;
+  order: string;
+  setOrder: React.Dispatch<React.SetStateAction<string>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}

@@ -1,7 +1,7 @@
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "store/store";
 import { URL, profileApiUrls } from "store/url";
-import { ErrorMessage, ProfileType } from "types/index";
+import { ErrorMessage, ProfileType, getProfileType } from "types/index";
 
 export const profileApi = createApi({
   reducerPath: "profileApi",
@@ -18,7 +18,7 @@ export const profileApi = createApi({
     },
   }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
   endpoints: (builder) => ({
-    getProfiles: builder.query<ProfileType[], string>({
+    getProfiles: builder.query<ProfileType[], getProfileType>({
       query: profileApiUrls.getProfiles,
       providesTags: ["Profiles"],
       forceRefetch: () => true,

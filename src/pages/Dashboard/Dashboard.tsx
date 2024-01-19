@@ -6,7 +6,7 @@ import styles from "./Dashboard.module.scss";
 export const Dashboard: React.FC = () => {
   const { data, isFetching, isLoading } = useGetDashboardDataQuery();
   const info = [
-    { img: DashboardUsers, key: "Users", value: data?.sumOfProfiles },
+    { img: DashboardUsers, key: "Users", value: data?.sumOfUsers },
     { img: DashboardProfiles, key: "Profiles", value: data?.sumOfProfiles },
     { img: DashboardAge, key: "Users 18+", value: data?.sumOfProfilesOlderThen18 },
   ];

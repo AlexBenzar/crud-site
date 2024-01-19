@@ -18,7 +18,6 @@ export const UsersList: React.FC = () => {
       <Typography variant="title-2" className={styles.users__title}>
         Users
       </Typography>
-      <div className={styles.users__sort}></div>
       <div className={styles.users__cards}>
         {data
           .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
