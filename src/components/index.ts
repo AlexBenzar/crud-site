@@ -5,3 +5,4 @@ export * from "./UserForm/UserForm";
 export * from "./DeleteForm/DeleteForm";
 export * from "./AddNewProfile/AddNewProfile";
 export * from "./ProfileForm/ProfileForm";
+export * from "./Sort/Sort";
