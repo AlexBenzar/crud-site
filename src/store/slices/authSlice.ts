@@ -1,22 +1,12 @@
-import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "store/store";
-import { URL, authApiUrls } from "store/url";
-import { ErrorMessage, User, AuthType, RegistrationType, UserResponse, Dashboard } from "types/index";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "store/constants";
+import { authApiUrls } from "store/url";
+import { User, AuthType, RegistrationType, UserResponse, Dashboard } from "types/index";
 
 export const authApi = createApi({
   reducerPath: "userApi",
   tagTypes: ["Users", "User"],
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${URL}api/`,
-    credentials: "include",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).user.token;
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     signUp: builder.mutation<UserResponse, RegistrationType>({
       query: authApiUrls.signUp,

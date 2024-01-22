@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 import { useUsersQuery } from "store/slices/authSlice";
 
 export const UsersList: React.FC = () => {
-  const { data, isLoading, isFetching } = useUsersQuery();
+  const { data, isLoading, isFetching, isError } = useUsersQuery();
   const [currentPage, setCurrentPage] = useState(1);
   const [usersAmount] = useState(8);
+
+  if (isError) {
+    return <Typography variant="error-1">Error occur</Typography>;
+  }
 
   return data ? (
     <div className={styles.users}>
@@ -16,7 +20,9 @@ export const UsersList: React.FC = () => {
         Users
       </Typography>
       <div className={styles.users__cards}>
-        {!isLoading || !isFetching ? (
+        {isLoading || isFetching ? (
+          <Loader />
+        ) : (
           data
             .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
             .map((item) => (
@@ -24,8 +30,6 @@ export const UsersList: React.FC = () => {
                 <UserCard {...item} />
               </Link>
             ))
-        ) : (
-          <Loader />
         )}
       </div>
       <Pagination
@@ -36,6 +40,6 @@ export const UsersList: React.FC = () => {
       />
     </div>
   ) : (
-    <Typography variant="error-1">Error occur</Typography>
+    <Loader />
   );
 };

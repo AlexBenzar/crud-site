@@ -11,7 +11,7 @@ export const ProfileList: React.FC = () => {
   const { id } = useParams();
   const [order, setOrder] = useState("");
   const [search, setSearch] = useState("");
-  const { data, isLoading, isFetching } = useGetProfilesQuery({ id: id || "", order, search });
+  const { data, isLoading, isFetching, isError } = useGetProfilesQuery({ id: id || "", order, search });
   const [createProfile, { error }] = usePostProfileMutation();
   const [isCreate, setIsCreate] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +21,10 @@ export const ProfileList: React.FC = () => {
     setCurrentPage(1);
   }, [data]);
 
+  if (isError) {
+    return <Typography variant="error-1">Error occur</Typography>;
+  }
+
   return data ? (
     <div className={styles.profile}>
       <Typography variant="title-2" className={styles.profile__title}>
@@ -28,20 +32,22 @@ export const ProfileList: React.FC = () => {
       </Typography>
       <Sort setSearch={setSearch} setOrder={setOrder} />
       <div className={styles.profile__list}>
-        {!isLoading || !isFetching ? (
-          data
-            .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
-            .map((profile: ProfileType) => (
-              <div key={profile._id} className={styles.profile__item}>
-                <ProfileCard {...profile} />
-              </div>
-            ))
-        ) : (
+        {isLoading || isFetching ? (
           <Loader />
+        ) : (
+          <>
+            {data
+              .filter((_item, index) => index >= currentPage * usersAmount - usersAmount && index < currentPage * usersAmount)
+              .map((profile: ProfileType) => (
+                <div key={profile._id} className={styles.profile__item}>
+                  <ProfileCard {...profile} />
+                </div>
+              ))}
+            <div className={styles.profile__item}>
+              <AddNewProfile onClick={() => setIsCreate(true)} />
+            </div>
+          </>
         )}
-        <div className={styles.profile__item}>
-          <AddNewProfile onClick={() => setIsCreate(true)} />
-        </div>
       </div>
       <Pagination
         page={currentPage}
@@ -52,6 +58,6 @@ export const ProfileList: React.FC = () => {
       {isCreate && <ProfileForm isOpen={setIsCreate} id={id as string} changeProfilesFunction={createProfile} error={error} />}
     </div>
   ) : (
-    <Typography variant="error-1">Error occur</Typography>
+    <Loader />
   );
 };

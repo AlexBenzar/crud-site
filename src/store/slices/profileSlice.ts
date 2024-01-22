@@ -1,22 +1,12 @@
-import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "store/store";
-import { URL, profileApiUrls } from "store/url";
-import { ErrorMessage, ProfileType, getProfileType } from "types/index";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "store/constants";
+import { profileApiUrls } from "store/url";
+import { ProfileType, getProfileType } from "types/index";
 
 export const profileApi = createApi({
   reducerPath: "profileApi",
   tagTypes: ["Profiles"],
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${URL}profiles/`,
-    credentials: "include",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).user.token;
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }) as BaseQueryFn<string | FetchArgs, unknown, ErrorMessage>,
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getProfiles: builder.query<ProfileType[], getProfileType>({
       query: profileApiUrls.getProfiles,

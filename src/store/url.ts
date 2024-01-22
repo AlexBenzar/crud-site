@@ -12,21 +12,21 @@ export const authApiUrls = {
     picture && typeof picture !== "string"
       ? body.append("picture", picture, picture.name)
       : body.append("picture", JSON.stringify(picture));
-    return { url: "signup", method: "POST", body, formData: true };
+    return { url: "api/signup", method: "POST", body, formData: true };
   },
   signIn: (body: AuthType) => ({
-    url: "signin",
+    url: "api/signin",
     method: "POST",
     body,
   }),
   users: () => ({
-    url: "users",
+    url: "api/users",
   }),
   getUser: (id: string) => ({
-    url: `user/${id}`,
+    url: `api/user/${id}`,
   }),
   getDashboard: () => ({
-    url: `dashboard/`,
+    url: `api/dashboard/`,
   }),
   patchUser: ({ id, email, username, picture, role }: RegistrationType & { id: string }) => {
     const body = new FormData();
@@ -34,17 +34,17 @@ export const authApiUrls = {
     body.append("email", email);
     body.append("role", role);
     picture && typeof picture !== "string" && body.append("picture", picture, picture.name);
-    return { url: `user/${id}`, method: "PATCH", body };
+    return { url: `api/user/${id}`, method: "PATCH", body };
   },
   deleteUser: (id: string) => ({
-    url: `user/${id}`,
+    url: `api/user/${id}`,
     method: "DELETE",
   }),
 };
 
 export const profileApiUrls = {
   getProfiles: ({ id, order, search }: getProfileType) => ({
-    url: `profile/${id}?order=${order}&search=${search}`,
+    url: `profiles/profile/${id}?order=${order}&search=${search}`,
   }),
   postProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
     const body = new FormData();
@@ -54,7 +54,7 @@ export const profileApiUrls = {
     body.append("gender", gender);
     photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
 
-    return { url: `profile/${id}`, method: "POST", body, formData: true };
+    return { url: `profiles/profile/${id}`, method: "POST", body, formData: true };
   },
   updateProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
     const body = new FormData();
@@ -63,10 +63,10 @@ export const profileApiUrls = {
     body.append("city", city);
     body.append("gender", gender);
     photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
-    return { url: `profile/${id}`, method: "PATCH", body, formData: true };
+    return { url: `profiles/profile/${id}`, method: "PATCH", body, formData: true };
   },
   deleteProfile: (id: string) => ({
-    url: `profile/${id}`,
+    url: `profiles/profile/${id}`,
     method: "DELETE",
   }),
 };
