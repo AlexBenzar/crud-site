@@ -23,6 +23,7 @@ export const Layout: React.FC = () => {
   }
 
   if (isError) {
+    cookies.remove("token");
     return <Typography variant="error-1">Error occur</Typography>;
   }
 
