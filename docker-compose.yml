@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   client:
@@ -6,7 +6,7 @@ services:
     tty: true
     build: ./crud-site
     ports:
-      - '8080:8080'
+      - "8080:8080"
     depends_on:
       - server
     networks:
@@ -14,9 +14,23 @@ services:
   server:
     build: ./crud-server
     ports:
-      - '5000:5000'
+      - "5000:5000"
+    depends_on:
+      - database
+    networks:
+      - mern-app
+  database:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
     networks:
       - mern-app
 networks:
   mern-app:
     driver: bridge
+volumes:
+  mongo-data:
+    driver: local

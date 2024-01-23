@@ -10,7 +10,7 @@ export const Dashboard: React.FC = () => {
     { img: DashboardProfiles, key: "Profiles", value: data?.sumOfProfiles },
     { img: DashboardAge, key: "Users 18+", value: data?.sumOfProfilesOlderThen18 },
   ];
-
+  console.log("test");
   if (isError) {
     return <Typography variant="error-1">Error occur</Typography>;
   }
