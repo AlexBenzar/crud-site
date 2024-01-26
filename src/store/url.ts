@@ -1,6 +1,6 @@
 import { AuthType, ProfileType, RegistrationType, getProfileType } from "types/index";
 
-export const URL = "http://localhost:5000/";
+export const URL = "http://35.158.242.57:5000/";
 
 export const authApiUrls = {
   signUp: ({ username, email, password, role, picture }: RegistrationType) => {
