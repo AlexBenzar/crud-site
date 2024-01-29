@@ -1,5 +1,5 @@
 export const orderBy = [
-  ["Name", "full_name"],
+  ["Country", "country"],
   ["City", "city"],
   ["Users 18+", "birthdate"],
 ];
