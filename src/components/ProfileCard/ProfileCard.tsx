@@ -8,7 +8,7 @@ import { DeleteForm } from "components/DeleteForm/DeleteForm";
 import { useDeleteProfileMutation, usePatchProfileMutation } from "store/slices/profileSlice";
 import { ProfileForm } from "..";
 
-export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, full_name, gender, _id, user, __v }) => {
+export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, country, full_name, gender, _id, user, __v }) => {
   const [deleteProfile, { error: deleteError }] = useDeleteProfileMutation();
   const [editProfile, { error: editError }] = usePatchProfileMutation();
   const [isHover, setIsHover] = useState(false);
@@ -18,6 +18,7 @@ export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, ful
     ["gender", gender],
     ["birthdate", new Date(birthdate).toISOString().split("T")[0]],
     ["Location", city],
+    ["Country", country],
   ];
   return (
     <>
@@ -47,7 +48,7 @@ export const ProfileCard: React.FC<ProfileType> = ({ photo, birthdate, city, ful
           isOpen={setIsEdit}
           changeProfilesFunction={editProfile}
           error={editError}
-          data={{ photo, birthdate, city, full_name, gender, _id, user, __v }}
+          data={{ photo, birthdate, city, country, full_name, gender, _id, user, __v }}
         />
       )}
     </>

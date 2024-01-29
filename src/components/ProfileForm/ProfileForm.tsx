@@ -13,6 +13,7 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, 
     gender: data?.gender || "male",
     birthdate: (data?.birthdate && new Date(data?.birthdate).toISOString().split("T")[0]) || "",
     city: data?.city || "",
+    country: data?.country || "",
     user: data?.user || "",
     __v: data?.__v || 0,
   };
@@ -60,7 +61,8 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, 
               </div>
             </div>
             <TextInput type="date" name="birthdate" isBlack={true} className={styles.profile__input} />
-            <CustomSelect name="city" className={styles.profile__input} />
+            <CustomSelect name="city" className={styles.profile__input} list="city" />
+            <CustomSelect name="country" className={styles.profile__input} list="country" />
             <div className={styles.profile__buttons}>
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.profile__button} />
               <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />

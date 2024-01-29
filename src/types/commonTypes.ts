@@ -33,3 +33,7 @@ export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
   variant: Font;
   children: React.ReactNode;
 }
+
+export interface CustomSelectType extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  list: "city" | "country";
+}
