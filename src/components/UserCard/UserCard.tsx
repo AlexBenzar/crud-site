@@ -2,8 +2,10 @@ import styles from "./UserCard.module.scss";
 import { Avatar } from "img";
 import { Typography } from "common/index";
 import { User } from "types/index";
+import { useGetProfilesCountQuery } from "store/slices/profileSlice";
 
-export const UserCard: React.FC<User> = ({ picture, username, email }) => {
+export const UserCard: React.FC<User> = ({ picture, username, email, _id }) => {
+  const { data } = useGetProfilesCountQuery(_id);
   return (
     <div className={styles.card}>
       <div className={styles.card__img}>
@@ -16,7 +18,7 @@ export const UserCard: React.FC<User> = ({ picture, username, email }) => {
         {email}
       </Typography>
       <Typography variant="body-2" className={styles.card__profiles}>
-        3 profiles
+        {data} profiles
       </Typography>
     </div>
   );

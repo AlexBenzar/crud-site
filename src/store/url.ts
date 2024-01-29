@@ -46,6 +46,9 @@ export const profileApiUrls = {
   getProfiles: ({ id, order, search }: getProfileType) => ({
     url: `profiles/profile/${id}?order=${order}&search=${search}`,
   }),
+  getProfilesCount: (id: string) => ({
+    url: `profiles/profile_count/${id}`,
+  }),
   postProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
     const body = new FormData();
     body.append("full_name", full_name);
