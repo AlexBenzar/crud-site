@@ -13,7 +13,7 @@ export const UserForm: React.FC<EditFormType> = ({ data, isOpen }) => {
     email: data.email,
     password: "",
     role: data.role,
-    picture: null,
+    picture: data.picture,
   };
   const [isAdmin, setIsAdmin] = useState(data.role == "admin" ? true : false);
   const handleSubmit = async ({ ...values }: RegistrationType, { setSubmitting }: FormikHelpers<RegistrationType>) => {
