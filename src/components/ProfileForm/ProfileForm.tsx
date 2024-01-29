@@ -8,15 +8,16 @@ import { useState } from "react";
 export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, changeProfilesFunction, error }) => {
   const initialValues: ProfileType = {
     _id: data?._id || "",
-    photo: null,
+    photo: data?.photo || null,
     full_name: data?.full_name || "",
     gender: data?.gender || "male",
     birthdate: (data?.birthdate && new Date(data?.birthdate).toISOString().split("T")[0]) || "",
     city: data?.city || "",
+    country: data?.country || "",
     user: data?.user || "",
     __v: data?.__v || 0,
   };
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState(data?.gender || "male");
   const changeGender = (values: ProfileType) => {
     values.gender = gender === "male" ? "female" : "male";
     setGender(values.gender);
@@ -36,12 +37,7 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, 
             <Typography variant="title-3" className={styles.profile__title}>
               Add new profile
             </Typography>
-            <ImgInput
-              className={styles.profile__img}
-              setFieldValue={setFieldValue}
-              image={values.photo as File}
-              imageName="photo"
-            />
+            <ImgInput className={styles.profile__img} setFieldValue={setFieldValue} image={values.photo} imageName="photo" />
             <TextInput type="text" name="full_name" placeholder="Name" isBlack={true} className={styles.profile__input} />
             <div className={styles.profile__gender}>
               <Typography variant="body-1" className={styles.profile__text}>
@@ -65,7 +61,8 @@ export const ProfileForm: React.FC<ProfileFormType> = ({ isOpen, id = "", data, 
               </div>
             </div>
             <TextInput type="date" name="birthdate" isBlack={true} className={styles.profile__input} />
-            <CustomSelect name="city" className={styles.profile__input} />
+            <CustomSelect name="city" className={styles.profile__input} list="city" />
+            <CustomSelect name="country" className={styles.profile__input} list="country" />
             <div className={styles.profile__buttons}>
               <Button text="Save" isBlack={true} isSubmitting={isSubmitting} className={styles.profile__button} />
               <Button text="Close" isBlack={true} onClick={() => isOpen(false)} />

@@ -49,21 +49,23 @@ export const profileApiUrls = {
   getProfilesCount: (id: string) => ({
     url: `profiles/profile_count/${id}`,
   }),
-  postProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
+  postProfile: ({ id, photo, full_name, birthdate, city, gender, country }: ProfileType & { id: string }) => {
     const body = new FormData();
     body.append("full_name", full_name);
     body.append("birthdate", birthdate);
     body.append("city", city);
+    body.append("country", country);
     body.append("gender", gender);
     photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
 
     return { url: `profiles/profile/${id}`, method: "POST", body, formData: true };
   },
-  updateProfile: ({ id, photo, full_name, birthdate, city, gender }: ProfileType & { id: string }) => {
+  updateProfile: ({ id, photo, full_name, birthdate, city, gender, country }: ProfileType & { id: string }) => {
     const body = new FormData();
     body.append("full_name", full_name);
     body.append("birthdate", birthdate);
     body.append("city", city);
+    body.append("country", country);
     body.append("gender", gender);
     photo && typeof photo !== "string" && body.append("photo", photo, photo.name);
     return { url: `profiles/profile/${id}`, method: "PATCH", body, formData: true };

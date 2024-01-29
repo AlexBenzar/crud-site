@@ -1,14 +1,15 @@
 import { ErrorMessage, Field } from "formik";
 import styles from "./CustomSelect.module.scss";
 import { Typography } from "common/Typography/Typography";
-import { city } from "./constant";
+import { city, county } from "./constant";
+import { CustomSelectType } from "types/index";
 
-export const CustomSelect: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (props) => {
+export const CustomSelect: React.FC<CustomSelectType> = ({ list = "city", ...props }) => {
   return (
     <label htmlFor={props.name} className={`${styles.select} ${props.className}`}>
       <Field name={props.name} as="select" className={styles.input}>
-        <option value="">City</option>
-        {city.map((item) => (
+        <option value="">{list}</option>
+        {(list === "city" ? city : county).map((item) => (
           <option key={item} value={item}>
             {item}
           </option>

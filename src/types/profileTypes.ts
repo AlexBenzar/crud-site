@@ -5,6 +5,7 @@ export interface ProfileType {
   gender: string;
   birthdate: string;
   city: string;
+  country: string;
   user: string;
   __v: number;
 }

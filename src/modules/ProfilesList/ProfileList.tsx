@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { usePostProfileMutation } from "store/slices/profileSlice";
 
-export const ProfileList: React.FC = () => {
+export const ProfileList: React.FC<{ DisplaySort?: boolean }> = ({ DisplaySort = true }) => {
   const { id } = useParams();
   const [order, setOrder] = useState("");
   const [search, setSearch] = useState("");
@@ -30,7 +30,7 @@ export const ProfileList: React.FC = () => {
       <Typography variant="title-2" className={styles.profile__title}>
         Profiles
       </Typography>
-      <Sort setSearch={setSearch} setOrder={setOrder} />
+      {DisplaySort && <Sort setSearch={setSearch} setOrder={setOrder} />}
       <div className={styles.profile__list}>
         {isLoading || isFetching ? (
           <Loader />

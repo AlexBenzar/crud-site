@@ -6,10 +6,10 @@ import { ErrorMessage } from "formik";
 import { ImageProps } from "types/index";
 
 export const ImgInput: React.FC<ImageProps> = ({ setFieldValue, image, imageName, ...props }) => {
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState(typeof image === "string" ? image : "");
   const imageRef = useRef<HTMLInputElement>(null);
   const reader = new FileReader();
-  if (image) {
+  if (image && typeof image !== "string") {
     reader.readAsDataURL(image);
     reader.onload = () => {
       const csv: string = reader.result as string;

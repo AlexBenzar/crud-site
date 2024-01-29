@@ -23,7 +23,7 @@ export interface ImageProps extends React.HTMLAttributes<HTMLDivElement> {
     value: unknown,
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<RegistrationType | ProfileType>>;
-  image: File | null;
+  image: File | string | null;
   imageName: string;
 }
 
@@ -32,4 +32,8 @@ type Font = "title-1" | "title-2" | "title-3" | "body-1" | "body-2" | "body-3" |
 export interface TypographyType extends React.HTMLAttributes<HTMLDivElement> {
   variant: Font;
   children: React.ReactNode;
+}
+
+export interface CustomSelectType extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  list: "city" | "country";
 }
