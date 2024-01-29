@@ -5,7 +5,7 @@ export const User: React.FC = () => {
   return (
     <div className={styles.user}>
       <UserInfo />
-      <ProfileList />
+      <ProfileList DisplaySort={false} />
     </div>
   );
 };

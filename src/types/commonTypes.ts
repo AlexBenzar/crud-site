@@ -23,7 +23,7 @@ export interface ImageProps extends React.HTMLAttributes<HTMLDivElement> {
     value: unknown,
     shouldValidate?: boolean,
   ) => Promise<void | FormikErrors<RegistrationType | ProfileType>>;
-  image: File | null;
+  image: File | string | null;
   imageName: string;
 }
 
