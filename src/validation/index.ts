@@ -36,6 +36,7 @@ export const profileValidation = Yup.object().shape({
   full_name: Yup.string().required(ErrorMessages.FullNameEmpty),
   birthdate: Yup.date().required(ErrorMessages.DateEmpty),
   city: Yup.string().required(ErrorMessages.CityEmpty),
+  country: Yup.string().required(ErrorMessages.CountryEmpty),
   photo: Yup.mixed()
     .nullable()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

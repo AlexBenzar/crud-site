@@ -9,4 +9,5 @@ export const ErrorMessages = {
   FullNameEmpty: "name can't be empty",
   DateEmpty: "Enter your date",
   CityEmpty: "City is required",
+  CountryEmpty: "Country is required",
 };
